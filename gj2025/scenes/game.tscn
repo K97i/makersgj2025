@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=4 uid="uid://bfulme4vehm50"]
+
+[ext_resource type="PackedScene" uid="uid://c6p7iyf0nyhvi" path="res://scenes/player.tscn" id="1_uwrxv"]
+[ext_resource type="PackedScene" uid="uid://bcexfx2pcu8v1" path="res://scenes/game_tilesets.tscn" id="2_yqjtg"]
+
+[node name="game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3.385, 3.385)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(0, -4)
+
+[node name="TileMapLayer" parent="." instance=ExtResource("2_yqjtg")]
+tile_map_data = PackedByteArray("AAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAD8/wEAAAAAAAAAAAA=")
