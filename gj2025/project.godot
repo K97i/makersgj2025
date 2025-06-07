@@ -19,6 +19,12 @@ config/icon="res://icon.svg"
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
+[display]
+
+window/size/viewport_width=640
+window/size/viewport_height=400
+window/size/mode=4
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/finite_state_machine/plugin.cfg", "res://addons/health_hitbox_hurtbox/plugin.cfg", "res://addons/inventory-system/plugin.cfg")
