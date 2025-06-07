@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3clghyour8fy"]
+
+[ext_resource type="Script" uid="uid://dbitnbwvcpvk7" path="res://scripts/options.gd" id="1_c2u1v"]
+[ext_resource type="PackedScene" uid="uid://drri3stggeekr" path="res://scenes/fade_transition.tscn" id="2_yjkok"]
+
+[node name="Options" type="Node2D"]
+script = ExtResource("1_c2u1v")
+
+[node name="Options" type="Button" parent="."]
+custom_minimum_size = Vector2(500, 50)
+offset_left = 324.0
+offset_top = 314.0
+offset_right = 824.0
+offset_bottom = 379.0
+theme_override_font_sizes/font_size = 41
+text = "Options Screen placeholder"
+
+[node name="Fade Transition" parent="." instance=ExtResource("2_yjkok")]

@@ -1,0 +1,80 @@
+[gd_scene load_steps=16 format=3 uid="uid://3hwj8mbxi6dy"]
+
+[ext_resource type="Texture2D" uid="uid://bet8wwo101fbh" path="res://assets/anims/checkpoint_idle/idle00.png" id="1_e28ry"]
+[ext_resource type="Script" uid="uid://dvm2rs3nfj21w" path="res://scripts/checkpoint.gd" id="1_ejce6"]
+[ext_resource type="Texture2D" uid="uid://dm71wvg2n6gug" path="res://assets/anims/checkpoint_idle/idle01.png" id="2_ejce6"]
+[ext_resource type="Texture2D" uid="uid://bpomuioradxkh" path="res://assets/anims/checkpoint_idle/idle02.png" id="3_jjwhk"]
+[ext_resource type="Texture2D" uid="uid://c78wvje7a3k2w" path="res://assets/anims/checkpoint_idle/idle03.png" id="4_5vg67"]
+[ext_resource type="Texture2D" uid="uid://cr27mky8aklxi" path="res://assets/anims/checkpoint_idle/idle04.png" id="5_ceatg"]
+[ext_resource type="Texture2D" uid="uid://bfnm5xg5sdi0p" path="res://assets/anims/checkpoint_idle/idle05.png" id="6_wxh5a"]
+[ext_resource type="Texture2D" uid="uid://dfk4m7mwy0ayh" path="res://assets/anims/checkpoint_idle/idle06.png" id="7_pbwmb"]
+[ext_resource type="Texture2D" uid="uid://cgtuhrhrowiyy" path="res://assets/anims/checkpoint_idle/idle07.png" id="8_6qfwh"]
+[ext_resource type="Texture2D" uid="uid://bm0n6rdl3867w" path="res://assets/anims/checkpoint_idle/idle08.png" id="9_3lops"]
+[ext_resource type="Texture2D" uid="uid://boyr3tj6wu5jq" path="res://assets/anims/checkpoint_idle/idle09.png" id="10_440ol"]
+[ext_resource type="Texture2D" uid="uid://di72u3bxpvm67" path="res://assets/anims/checkpoint_idle/idle10.png" id="11_t1ec7"]
+[ext_resource type="Texture2D" uid="uid://cg8pl72h0lpih" path="res://assets/anims/checkpoint_idle/idle11.png" id="12_aaln5"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fk6k2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e28ry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ejce6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jjwhk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5vg67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ceatg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wxh5a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pbwmb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6qfwh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_3lops")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_440ol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_t1ec7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_aaln5")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vl3lj"]
+size = Vector2(15, 42)
+
+[node name="Checkpoint" type="Node2D"]
+script = ExtResource("1_ejce6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fk6k2")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.39175
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -5)
+shape = SubResource("RectangleShape2D_vl3lj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

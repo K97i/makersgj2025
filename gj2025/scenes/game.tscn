@@ -1,18 +1,54 @@
-[gd_scene load_steps=3 format=4 uid="uid://bfulme4vehm50"]
+[gd_scene load_steps=8 format=4 uid="uid://bfulme4vehm50"]
 
+[ext_resource type="Script" uid="uid://p5kalwic15eg" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://c6p7iyf0nyhvi" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://bcexfx2pcu8v1" path="res://scenes/game_tilesets.tscn" id="2_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://drri3stggeekr" path="res://scenes/fade_transition.tscn" id="4_iywne"]
+[ext_resource type="PackedScene" uid="uid://cfh1hj27tug44" path="res://scenes/killzone.tscn" id="5_iywne"]
+[ext_resource type="PackedScene" uid="uid://3hwj8mbxi6dy" path="res://scenes/checkpoint.tscn" id="6_p57ef"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iywne"]
+size = Vector2(3330, 75)
 
 [node name="game" type="Node2D"]
+script = ExtResource("1_lbhrr")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(0, -4)
+[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(171, 92)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, 4)
 zoom = Vector2(3.385, 3.385)
-limit_bottom = 30
+limit_bottom = 200
 position_smoothing_enabled = true
 
 [node name="TileMapLayer" parent="." instance=ExtResource("2_yqjtg")]
-tile_map_data = PackedByteArray("AAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAD8/wEAAAAAAAAAAAAEAAEAAAAAAAYAAAAFAAEAAAAAAAYAAAAGAAEAAAAAAAYAAAAHAAEAAAAAAAYAAAAIAAEAAAAAAAYAAAD2/wEAAAAAAAYAAAD3/wEAAAAAAAYAAAD4/wEAAAAAAAYAAAD5/wEAAAAAAAYAAAD6/wEAAAAAAAYAAAD7/wEAAAAAAAYAAAAJAAEAAAAAAAYAAAAKAAEAAAAAAAYAAAALAAEAAAAAAAYAAAAMAAEAAAAAAAYAAAANAAEAAAAAAAYAAAAOAAEAAAAAAAYAAAA=")
+position = Vector2(171, 96)
+tile_map_data = PackedByteArray("AAD9/wEAAAAAAAAAAAD+/wEAAAAAAAAAAAD//wEAAAAAAAAAAAAAAAEAAAAAAAAAAAABAAEAAAAAAAAAAAACAAEAAAAAAAAAAAADAAEAAAAAAAAAAAD8/wEAAAAAAAAAAAAEAAEAAAAAAAYAAAAFAAEAAAAAAAYAAAAGAAEAAAAAAAYAAAAHAAEAAAAAAAYAAAAIAAEAAAAAAAYAAAD2/wEAAAAAAAYAAAD3/wEAAAAAAAYAAAD4/wEAAAAAAAYAAAD5/wEAAAAAAAYAAAD6/wEAAAAAAAYAAAD7/wEAAAAAAAYAAAAJAAEAAAAAAAYAAAAKAAEAAAAAAAYAAAALAAEAAAAAAAYAAAAMAAEAAAAAAAYAAAANAAEAAAAAAAYAAAAOAAEAAAAAAAYAAAAKAP7/AAAAAAIAAAAKAP//AAAAAAIAAAAKAAAAAAAAAAIAAAAJAP7/AAAAAAIAAAAJAP//AAAAAAIAAAAJAAAAAAAAAAIAAAAGAP//AAAAAAIAAAAGAAAAAAAAAAIAAAAPAAEAAAAAAAYAAAAQAAEAAAAAAAYAAAARAAEAAAAAAAYAAAASAAEAAAAAAAYAAAATAAEAAAAAAAYAAAAUAAEAAAAAAAYAAAAVAAEAAAAAAAYAAAAWAAEAAAAAAAYAAAAWAAAAAAAAAAYAAAAXAAAAAAAAAAYAAAAYAAAAAAAAAAYAAAAZAAAAAAAAAAYAAAAYAAEAAAAAAAYAAAAXAAEAAAAAAAYAAAANAP//AAAAAAYAAAANAAAAAAAAAAYAAAAYAP//AAAAAAYAAAAZAP//AAAAAAYAAAAaAP//AAAAAAYAAAAZAAEAAAAAAAYAAAAaAAEAAAAAAAYAAAAbAAEAAAAAAAYAAAAcAAEAAAAAAAYAAAAdAAEAAAAAAAYAAAAeAAEAAAAAAAYAAAAaAAAAAAAAAAYAAAAbAAAAAAAAAAYAAAAcAAAAAAAAAAYAAAAdAAAAAAAAAAYAAAAeAAAAAAAAAAYAAAAfAAAAAAAAAAYAAAAbAP//AAAAAAYAAAAcAP//AAAAAAYAAAAdAP//AAAAAAYAAAAeAP//AAAAAAYAAAAfAP//AAAAAAYAAAAZAP7/AAAAAAYAAAAaAP7/AAAAAAYAAAAbAP7/AAAAAAYAAAAcAP7/AAAAAAYAAAAdAP7/AAAAAAYAAAAeAP7/AAAAAAYAAAAYAPv/AAAAAAYAAAAXAPv/AAAAAAYAAAAWAPv/AAAAAAYAAAAWAPz/AAAAAAYAAAAVAPz/AAAAAAYAAAAUAPz/AAAAAAYAAAAUAP3/AAAAAAYAAAATAP3/AAAAAAYAAAASAP3/AAAAAAYAAAAQAP3/AAAAAAYAAAARAP3/AAAAAAYAAAAPAP3/AAAAAAYAAAAbAPr/AAAAAAYAAAAcAPr/AAAAAAYAAAAdAPr/AAAAAAYAAAA=")
+
+[node name="Fade Transition" parent="." instance=ExtResource("4_iywne")]
+metadata/_edit_use_anchors_ = true
+
+[node name="lava_ground" parent="." instance=ExtResource("5_iywne")]
+position = Vector2(0, 131)
+
+[node name="groundcollider" type="CollisionShape2D" parent="lava_ground"]
+position = Vector2(1301, 35.5)
+shape = SubResource("RectangleShape2D_iywne")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Checkpoint" parent="Node" instance=ExtResource("6_p57ef")]
+position = Vector2(237, 95)
+
+[node name="Checkpoint2" parent="Node" instance=ExtResource("6_p57ef")]
+position = Vector2(323, 48)
+
+[node name="Checkpoint3" parent="Node" instance=ExtResource("6_p57ef")]
+position = Vector2(543, -1)
+
+[node name="coyotetimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[connection signal="body_entered" from="lava_ground" to="lava_ground" method="_on_body_entered"]

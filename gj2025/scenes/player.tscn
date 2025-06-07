@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c6p7iyf0nyhvi"]
+[gd_scene load_steps=26 format=3 uid="uid://c6p7iyf0nyhvi"]
 
 [ext_resource type="Script" uid="uid://b0tegrq10ko3n" path="res://scripts/character_body_2d.gd" id="1_jej6c"]
 [ext_resource type="Texture2D" uid="uid://fp7wlk7nhyb7" path="res://assets/anims/mc_idle/idle00.png" id="2_a38lo"]
@@ -110,7 +110,10 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_f1ej7"]
 radius = 5.0
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_a38lo"]
+radius = 5.09902
+
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_jej6c")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -127,6 +130,13 @@ wait_time = 0.2
 
 [node name="dash_again_timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 11)
+shape = SubResource("CircleShape2D_a38lo")
 
 [connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="dash_again_timer" to="." method="_on_dash_again_timer_timeout"]

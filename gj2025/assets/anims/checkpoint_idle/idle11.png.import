@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs61gxi4yjrgn"
-path="res://.godot/imported/idle06.png-498ee0b35e65b5581f4be443f27146ce.ctex"
+uid="uid://cg8pl72h0lpih"
+path="res://.godot/imported/idle11.png-285ebe7f2ed9b46405d2e6a79630113e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/idle06.png"
-dest_files=["res://.godot/imported/idle06.png-498ee0b35e65b5581f4be443f27146ce.ctex"]
+source_file="res://assets/anims/checkpoint_idle/idle11.png"
+dest_files=["res://.godot/imported/idle11.png-285ebe7f2ed9b46405d2e6a79630113e.ctex"]
 
 [params]
 

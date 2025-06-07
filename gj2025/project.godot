@@ -15,6 +15,10 @@ run/main_scene="uid://bfulme4vehm50"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Gamemanager="*res://scripts/gamemanager.gd"
+
 [input]
 
 move_right={
