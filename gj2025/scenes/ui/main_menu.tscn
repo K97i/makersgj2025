@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://vl0gmttgj1ap"]
 
-[ext_resource type="Script" uid="uid://u3fvyx7rah4p" path="res://scripts/main_menu.gd" id="1_l6cm7"]
-[ext_resource type="PackedScene" uid="uid://drri3stggeekr" path="res://scenes/fade_transition.tscn" id="2_ekxnf"]
+[ext_resource type="Script" uid="uid://u3fvyx7rah4p" path="res://scripts/ui/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="PackedScene" uid="uid://drri3stggeekr" path="res://scenes/ui/fade_transition.tscn" id="2_ekxnf"]
 [ext_resource type="AudioStream" uid="uid://cg4gbqkijyc1s" path="res://assets/sfx/themes/stuck.ogg" id="3_bqqt6"]
 
 [sub_resource type="VideoStreamTheora" id="VideoStreamTheora_ekxnf"]
@@ -24,15 +24,13 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Start" type="Button" parent="Button Manager"]
+[node name="Start" type="TextureButton" parent="Button Manager"]
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 0
 offset_left = 324.0
 offset_top = 230.0
 offset_right = 824.0
 offset_bottom = 295.0
-theme_override_font_sizes/font_size = 41
-text = "Start"
 
 [node name="Options" type="Button" parent="Button Manager"]
 custom_minimum_size = Vector2(500, 50)

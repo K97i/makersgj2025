@@ -1,0 +1,75 @@
+[gd_scene load_steps=15 format=3 uid="uid://w1okcylpifjc"]
+
+[ext_resource type="Script" uid="uid://b3h3e5e44r85t" path="res://scripts/entities/shooting_enemy.gd" id="1_meqhd"]
+[ext_resource type="Texture2D" uid="uid://dwk40mfbtdu5q" path="res://assets/enemies/shooting_enemy/predator135.png" id="1_nlgyo"]
+[ext_resource type="Texture2D" uid="uid://c2lxv3258fs3s" path="res://assets/enemies/shooting_enemy/predator136.png" id="2_meqhd"]
+[ext_resource type="PackedScene" uid="uid://dhrej0msxlwj6" path="res://scenes/bullet.tscn" id="2_uq4mo"]
+[ext_resource type="Texture2D" uid="uid://dnbnqip8owbmy" path="res://assets/enemies/shooting_enemy/predator137.png" id="3_gme5j"]
+[ext_resource type="Texture2D" uid="uid://hoia4308dqfe" path="res://assets/enemies/shooting_enemy/predator138.png" id="4_uq4mo"]
+[ext_resource type="Texture2D" uid="uid://bokxm5flip581" path="res://assets/enemies/shooting_enemy/predator139.png" id="5_r37iw"]
+[ext_resource type="Texture2D" uid="uid://boangfounvbjd" path="res://assets/enemies/shooting_enemy/predator140.png" id="6_8cxtf"]
+[ext_resource type="Texture2D" uid="uid://c25qytibxwo2q" path="res://assets/enemies/shooting_enemy/predator141.png" id="7_rsn8g"]
+[ext_resource type="Texture2D" uid="uid://crfhst884er7p" path="res://assets/enemies/shooting_enemy/predator142.png" id="8_qlgtd"]
+[ext_resource type="Texture2D" uid="uid://1u0vaks6j6uv" path="res://assets/enemies/shooting_enemy/predator143.png" id="9_yys6i"]
+[ext_resource type="PackedScene" uid="uid://cfh1hj27tug44" path="res://scenes/interactables/killzone.tscn" id="11_gme5j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sxq4o"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nlgyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_meqhd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gme5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uq4mo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r37iw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8cxtf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rsn8g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qlgtd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_yys6i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uq4mo"]
+radius = 14.0357
+
+[node name="shooting_enemy" type="CharacterBody2D"]
+script = ExtResource("1_meqhd")
+ammo = ExtResource("2_uq4mo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sxq4o")
+autoplay = "default"
+frame_progress = 0.862588
+
+[node name="killzone" parent="." instance=ExtResource("11_gme5j")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-3, 2)
+shape = SubResource("CircleShape2D_uq4mo")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+
+[node name="Shoot Timer" type="Timer" parent="."]
+wait_time = 0.4
+
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
+[connection signal="timeout" from="Shoot Timer" to="." method="_on_shoot_timer_timeout"]

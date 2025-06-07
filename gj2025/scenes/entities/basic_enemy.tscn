@@ -1,0 +1,89 @@
+[gd_scene load_steps=18 format=3 uid="uid://djgp2fgiax3oy"]
+
+[ext_resource type="Script" uid="uid://ciivvfwsrgiu6" path="res://scripts/entities/basic_enemy.gd" id="1_x7mo5"]
+[ext_resource type="Texture2D" uid="uid://2cxrwhmnowse" path="res://assets/enemies/basic_enemy/predator00.png" id="2_ef653"]
+[ext_resource type="Texture2D" uid="uid://bml0eh5244pt2" path="res://assets/enemies/basic_enemy/predator01.png" id="3_knpwv"]
+[ext_resource type="Texture2D" uid="uid://dqfx1yevvxpgd" path="res://assets/enemies/basic_enemy/predator02.png" id="4_rgwoh"]
+[ext_resource type="Texture2D" uid="uid://5d0kxxetmgfl" path="res://assets/enemies/basic_enemy/predator03.png" id="5_eewam"]
+[ext_resource type="Texture2D" uid="uid://cb3aawt7d0k12" path="res://assets/enemies/basic_enemy/predator04.png" id="6_otvav"]
+[ext_resource type="Texture2D" uid="uid://c2ssnnk8y2c2k" path="res://assets/enemies/basic_enemy/predator05.png" id="7_wtyvb"]
+[ext_resource type="Texture2D" uid="uid://c2vpr0ctvmnh8" path="res://assets/enemies/basic_enemy/predator06.png" id="8_rj3a0"]
+[ext_resource type="Texture2D" uid="uid://c3d278jwffshr" path="res://assets/enemies/basic_enemy/predator07.png" id="9_cckbf"]
+[ext_resource type="Texture2D" uid="uid://chkq2ra40cq2s" path="res://assets/enemies/basic_enemy/predator08.png" id="10_kypch"]
+[ext_resource type="Texture2D" uid="uid://cpkv0ufmunyrk" path="res://assets/enemies/basic_enemy/predator09.png" id="11_4sv2n"]
+[ext_resource type="Texture2D" uid="uid://oer07wqdicdj" path="res://assets/enemies/basic_enemy/predator10.png" id="12_pa435"]
+[ext_resource type="Texture2D" uid="uid://nqxuoxevmhme" path="res://assets/enemies/basic_enemy/predator11.png" id="13_cptc0"]
+[ext_resource type="Texture2D" uid="uid://ckv0ofrjem2db" path="res://assets/enemies/basic_enemy/predator12.png" id="14_j4ilp"]
+[ext_resource type="PackedScene" uid="uid://cfh1hj27tug44" path="res://scenes/interactables/killzone.tscn" id="15_ef653"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_es862"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ef653")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_knpwv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rgwoh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eewam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_otvav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_wtyvb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_rj3a0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_cckbf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_kypch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_4sv2n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_pa435")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_cptc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_j4ilp")
+}],
+"loop": true,
+"name": &"move",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_knpwv"]
+radius = 16.1245
+
+[node name="basic_enemy" type="CharacterBody2D"]
+script = ExtResource("1_x7mo5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_es862")
+animation = &"move"
+autoplay = "move"
+
+[node name="killzone" parent="." instance=ExtResource("15_ef653")]
+position = Vector2(-1, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
+position = Vector2(-2, -1)
+shape = SubResource("CircleShape2D_knpwv")
+
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]

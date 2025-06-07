@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhrej0msxlwj6"]
+
+[ext_resource type="Texture2D" uid="uid://2cxrwhmnowse" path="res://assets/enemies/basic_enemy/predator00.png" id="1_mkf8s"]
+[ext_resource type="Script" uid="uid://cp02angfycm7x" path="res://scripts/projectiles/bullet.tres.gd" id="1_y25gk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l5glv"]
+radius = 9.0
+
+[node name="bullet" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_y25gk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.58, 0.58)
+texture = ExtResource("1_mkf8s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-2, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_l5glv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
