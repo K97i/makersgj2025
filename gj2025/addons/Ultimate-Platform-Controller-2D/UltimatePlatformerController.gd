@@ -5,7 +5,7 @@ class_name PlatformerController2D
 @export var README: String = "IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' in the project settings input map. Usage tips. 1. Hover over each toggle and variable to read what it does and to make sure nothing bugs. 2. Animations are very primitive. To make full use of your custom art, you may want to slightly change the code for the animations"
 
 @export_category("Necesary Child Nodes")
-@export var PlayerSprite: AnimatedSprite2D
+#@export var PlayerSprite: AnimatedSprite2D
 # PlayerCollider export removed as the script doesn't directly use 'col' variable anymore.
 # The CollisionShape2D node must still be a child of CharacterBody2D in the scene.
 
@@ -60,8 +60,8 @@ var wasMovingR: bool = true
 var wasPressingR: bool = true # Default to right for initial dash direction if no input pressed yet
 var movementInputMonitoring: Vector2 = Vector2.ONE # .x for right, .y for left
 
-var anim: AnimatedSprite2D
-var animScaleLock : Vector2
+#var anim: AnimatedSprite2D
+#var animScaleLock : Vector2
 
 # Input state variables
 var upHold: bool
@@ -85,9 +85,12 @@ var dashing_state_timer_node: Timer
 var was_on_floor: bool = false
 
 func _ready():
-	anim = PlayerSprite
+	$LegsAnimatedSprite2D.play()
+	$TorsoAnimatedSprite2D.play()
+
+	#anim = PlayerSprite
 	_updateData()
-	animScaleLock = abs(PlayerSprite.scale)
+	#animScaleLock = abs(PlayerSprite.scale)
 	# Initialize was_on_floor. is_on_floor() is reliable after the first physics frame.
 	# Call differed ensures it runs after node is ready for physics checks.
 	call_deferred("_initialize_floor_state")
@@ -119,34 +122,36 @@ func _updateData():
 	jumpBuffering = abs(jumpBuffering)
 
 func _process(_delta):
+	pass
+	
 	# Animation Handling
-	PlayerSprite.speed_scale = 1
-	var current_animation = PlayerSprite.animation
+	#PlayerSprite.speed_scale = 1
+	#var current_animation = PlayerSprite.animation
 
-	if dashing:
-		if dash and current_animation != "dash": PlayerSprite.play("dash")
-	elif not is_on_floor():
-		if velocity.y < 0: # Jumping/Rising
-			if jump and current_animation != "jump": PlayerSprite.play("jump")
-		else: # Falling
-			if falling and current_animation != "falling": PlayerSprite.play("falling")
-	elif abs(velocity.x) > 5: # Moving horizontally
-		var target_move_anim = "idle"
-		if run: target_move_anim = "run"
-		elif walk: target_move_anim = "walk"
-		
-		if current_animation != target_move_anim:
-			PlayerSprite.play(target_move_anim)
-		elif idle and current_animation != "idle" and target_move_anim == "idle": # Fallback if no run/walk
-			PlayerSprite.play("idle")
-	else: # Idle on floor
-		if idle and current_animation != "idle": PlayerSprite.play("idle")
+	#if dashing:
+		#if dash and current_animation != "dash": PlayerSprite.play("dash")
+	#elif not is_on_floor():
+		#if velocity.y < 0: # Jumping/Rising
+			#if jump and current_animation != "jump": PlayerSprite.play("jump")
+		#else: # Falling
+			#if falling and current_animation != "falling": PlayerSprite.play("falling")
+	#elif abs(velocity.x) > 5: # Moving horizontally
+		#var target_move_anim = "idle"
+		#if run: target_move_anim = "run"
+		#elif walk: target_move_anim = "walk"
+		#
+		#if current_animation != target_move_anim:
+			#PlayerSprite.play(target_move_anim)
+		#elif idle and current_animation != "idle" and target_move_anim == "idle": # Fallback if no run/walk
+			#PlayerSprite.play("idle")
+	#else: # Idle on floor
+		#if idle and current_animation != "idle": PlayerSprite.play("idle")
 
 	# Flip sprite based on movement direction
-	if velocity.x > 0.1:
-		PlayerSprite.scale.x = animScaleLock.x
-	elif velocity.x < -0.1:
-		PlayerSprite.scale.x = -animScaleLock.x
+	#if velocity.x > 0.1:
+		#PlayerSprite.scale.x = animScaleLock.x
+	#elif velocity.x < -0.1:
+		#PlayerSprite.scale.x = -animScaleLock.x
 
 func _physics_process(delta: float):
 	# Input Detection

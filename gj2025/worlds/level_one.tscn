@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=4 uid="uid://x57k1rlyfkuo"]
 
 [ext_resource type="Texture2D" uid="uid://xq2o87sif2bw" path="res://worlds/backgrounds/spaniard/sky.png" id="1_4flu0"]
-[ext_resource type="TileSet" uid="uid://mj03d870ub8g" path="res://worlds/world_tileset.tres" id="1_5x5r3"]
-[ext_resource type="PackedScene" uid="uid://c6p7iyf0nyhvi" path="res://entities/player/player.tscn" id="2_iw2g0"]
+[ext_resource type="TileSet" uid="uid://mj03d870ub8g" path="res://worlds/tilesets/world_tileset.tres" id="1_5x5r3"]
 [ext_resource type="Texture2D" uid="uid://d2lbb7e4eaunf" path="res://worlds/backgrounds/spaniard/clouds.png" id="2_saslb"]
 [ext_resource type="Texture2D" uid="uid://b3tj0krt2ucll" path="res://worlds/backgrounds/spaniard/mountains.png" id="3_hrpaa"]
+[ext_resource type="PackedScene" uid="uid://bsw13y2k72xns" path="res://entities/player/player_statemachine.tscn" id="5_hrpaa"]
 
 [node name="LevelOne" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-28.0, 204.0]
@@ -50,12 +50,11 @@ tile_map_data = PackedByteArray("AAAKAPv/AAACAAIAAAALAPv/AAAEAAIAAAAMAPv/AAACAAI
 tile_set = ExtResource("1_5x5r3")
 rendering_quadrant_size = 8
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_iw2g0")]
-position = Vector2(59, 121)
-maxSpeed = 160.0
+[node name="Player" parent="." instance=ExtResource("5_hrpaa")]
+position = Vector2(78, 122)
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(40, -2)
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(99, 119)
 zoom = Vector2(3.8, 3.8)
 limit_left = 0
 limit_top = -28
