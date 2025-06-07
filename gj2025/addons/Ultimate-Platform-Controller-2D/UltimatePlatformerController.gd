@@ -2,664 +2,334 @@ extends CharacterBody2D
 
 class_name PlatformerController2D
 
-@export var README: String = "IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' 'down' in the project settings input map. Usage tips. 1. Hover over each toggle and variable to read what it does and to make sure nothing bugs. 2. Animations are very primitive. To make full use of your custom art, you may want to slightly change the code for the animations"
-#INFO READEME 
-#IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' 'down' in the project settings input map. THIS IS REQUIRED
-#Usage tips. 
-#1. Hover over each toggle and variable to read what it does and to make sure nothing bugs. 
-#2. Animations are very primitive. To make full use of your custom art, you may want to slightly change the code for the animations
+@export var README: String = "IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' in the project settings input map. Usage tips. 1. Hover over each toggle and variable to read what it does and to make sure nothing bugs. 2. Animations are very primitive. To make full use of your custom art, you may want to slightly change the code for the animations"
 
 @export_category("Necesary Child Nodes")
 @export var PlayerSprite: AnimatedSprite2D
-@export var PlayerCollider: CollisionShape2D
+# PlayerCollider export removed as the script doesn't directly use 'col' variable anymore.
+# The CollisionShape2D node must still be a child of CharacterBody2D in the scene.
 
-#INFO HORIZONTAL MOVEMENT 
 @export_category("L/R Movement")
-##The max speed your player will move
 @export_range(50, 500) var maxSpeed: float = 200.0
-##How fast your player will reach max speed from rest (in seconds)
-@export_range(0, 4) var timeToReachMaxSpeed: float = 0.2
-##How fast your player will reach zero speed from max speed (in seconds)
-@export_range(0, 4) var timeToReachZeroSpeed: float = 0.2
-##If true, player will instantly move and switch directions. Overrides the "timeToReach" variables, setting them to 0.
-@export var directionalSnap: bool = false
-##If enabled, the default movement speed will by 1/2 of the maxSpeed and the player must hold a "run" button to accelerate to max speed. Assign "run" (case sensitive) in the project input settings.
-@export var runningModifier: bool = false
+@export_range(0, 4) var timeToReachMaxSpeed: float = 0.2 # If 0, movement is instant
+@export_range(0, 4) var timeToReachZeroSpeed: float = 0.2 # If 0, stopping is instant
 
-#INFO JUMPING 
 @export_category("Jumping and Gravity")
-##The peak height of your player's jump
-@export_range(0, 20) var jumpHeight: float = 2.0
-##How many jumps your character can do before needing to touch the ground again. Giving more than 1 jump disables jump buffering and coyote time.
+@export_range(0, 200) var jumpHeight: float = 48.0 # Represents target pixel height if using physics-based jumpMagnitude
 @export_range(0, 4) var jumps: int = 1
-##The strength at which your character will be pulled to the ground.
-@export_range(0, 100) var gravityScale: float = 20.0
-##The fastest your player can fall
+@export_range(100, 2000) var gravityScale: float = 1080.0 # Acceleration (e.g., units/sec^2)
 @export_range(0, 1000) var terminalVelocity: float = 500.0
-##Your player will move this amount faster when falling providing a less floaty jump curve.
 @export_range(0.5, 3) var descendingGravityFactor: float = 1.3
-##Enabling this toggle makes it so that when the player releases the jump key while still ascending, their vertical velocity will cut in half, providing variable jump height.
 @export var shortHopAkaVariableJumpHeight: bool = true
-##How much extra time (in seconds) your player will be given to jump after falling off an edge. This is set to 0.2 seconds by default.
 @export_range(0, 0.5) var coyoteTime: float = 0.2
-##The window of time (in seconds) that your player can press the jump button before hitting the ground and still have their input registered as a jump. This is set to 0.2 seconds by default.
 @export_range(0, 0.5) var jumpBuffering: float = 0.2
 
-#INFO EXTRAS
 @export_category("Wall Jumping")
-##Allows your player to jump off of walls. Without a Wall Kick Angle, the player will be able to scale the wall.
 @export var wallJump: bool = false
-##How long the player's movement input will be ignored after wall jumping.
 @export_range(0, 0.5) var inputPauseAfterWallJump: float = 0.1
-##The angle at which your player will jump away from the wall. 0 is straight away from the wall, 90 is straight up. Does not account for gravity
 @export_range(0, 90) var wallKickAngle: float = 60.0
-##The player's gravity will be divided by this number when touch a wall and descending. Set to 1 by default meaning no change will be made to the gravity and there is effectively no wall sliding. THIS IS OVERRIDDED BY WALL LATCH.
-@export_range(1, 20) var wallSliding: float = 1.0
-##If enabled, the player's gravity will be set to 0 when touching a wall and descending. THIS WILL OVERRIDE WALLSLIDING.
-@export var wallLatching: bool = false
-##wall latching must be enabled for this to work. #If enabled, the player must hold down the "latch" key to wall latch. Assign "latch" in the project input settings. The player's input will be ignored when latching.
-@export var wallLatchingModifer: bool = false
+
 @export_category("Dashing")
-##The type of dashes the player can do.
 @export_enum("None", "Horizontal", "Vertical", "Four Way", "Eight Way") var dashType: int
-##How many dashes your player can do before needing to hit the ground.
 @export_range(0, 10) var dashes: int = 1
-##If enabled, pressing the opposite direction of a dash, during a dash, will zero the player's velocity.
 @export var dashCancel: bool = true
-##How far the player will dash. One of the dashing toggles must be on for this to be used.
-@export_range(1.5, 4) var dashLength: float = 2.5
-@export_category("Corner Cutting/Jump Correct")
-##If the player's head is blocked by a jump but only by a little, the player will be nudged in the right direction and their jump will execute as intended. NEEDS RAYCASTS TO BE ATTACHED TO THE PLAYER NODE. AND ASSIGNED TO MOUNTING RAYCAST. DISTANCE OF MOUNTING DETERMINED BY PLACEMENT OF RAYCAST.
-@export var cornerCutting: bool = false
-##How many pixels the player will be pushed (per frame) if corner cutting is needed to correct a jump.
-@export_range(1, 5) var correctionAmount: float = 1.5
-##Raycast used for corner cutting calculations. Place above and to the left of the players head point up. ALL ARE NEEDED FOR IT TO WORK.
-@export var leftRaycast: RayCast2D
-##Raycast used for corner cutting calculations. Place above of the players head point up. ALL ARE NEEDED FOR IT TO WORK.
-@export var middleRaycast: RayCast2D
-##Raycast used for corner cutting calculations. Place above and to the right of the players head point up. ALL ARE NEEDED FOR IT TO WORK.
-@export var rightRaycast: RayCast2D
-@export_category("Down Input")
-##Holding down will crouch the player. Crouching script may need to be changed depending on how your player's size proportions are. It is built for 32x player's sprites.
-@export var crouch: bool = false
-##Holding down and pressing the input for "roll" will execute a roll if the player is grounded. Assign a "roll" input in project settings input.
-@export var canRoll: bool
-@export_range(1.25, 2) var rollLength: float = 2
-##If enabled, the player will stop all horizontal movement midair, wait (groundPoundPause) seconds, and then slam down into the ground when down is pressed. 
-@export var groundPound: bool
-##The amount of time the player will hover in the air before completing a ground pound (in seconds)
-@export_range(0.05, 0.75) var groundPoundPause: float = 0.25
-##If enabled, pressing up will end the ground pound early
-@export var upToCancel: bool = false
+@export_range(1.5, 4) var dashLength: float = 2.5 # Multiplier for dash distance based on maxSpeed
 
 @export_category("Animations (Check Box if has animation)")
-##Animations must be named "run" all lowercase as the check box says
 @export var run: bool
-##Animations must be named "jump" all lowercase as the check box says
 @export var jump: bool
-##Animations must be named "idle" all lowercase as the check box says
 @export var idle: bool
-##Animations must be named "walk" all lowercase as the check box says
 @export var walk: bool
-##Animations must be named "slide" all lowercase as the check box says
-@export var slide: bool
-##Animations must be named "latch" all lowercase as the check box says
-@export var latch: bool
-##Animations must be named "falling" all lowercase as the check box says
 @export var falling: bool
-##Animations must be named "crouch_idle" all lowercase as the check box says
-@export var crouch_idle: bool
-##Animations must be named "crouch_walk" all lowercase as the check box says
-@export var crouch_walk: bool
-##Animations must be named "roll" all lowercase as the check box says
-@export var roll: bool
+@export var dash: bool
 
-
-
-#Variables determined by the developer set ones.
-var appliedGravity: float
-var maxSpeedLock: float
-var appliedTerminalVelocity: float
-
-var friction: float
+# Variables calculated based on exports
 var acceleration: float
-var deceleration: float
-var instantAccel: bool = false
-var instantStop: bool = false
-
+var deceleration: float # Should be a positive value representing deceleration rate
 var jumpMagnitude: float = 500.0
+var dashMagnitude: float
+
+# State variables
 var jumpCount: int
+var dashCount: int
 var jumpWasPressed: bool = false
 var coyoteActive: bool = false
-var dashMagnitude: float
 var gravityActive: bool = true
 var dashing: bool = false
-var dashCount: int
-var rolling: bool = false
+var wasMovingR: bool = true
+var wasPressingR: bool = true # Default to right for initial dash direction if no input pressed yet
+var movementInputMonitoring: Vector2 = Vector2.ONE # .x for right, .y for left
 
-var twoWayDashHorizontal
-var twoWayDashVertical
-var eightWayDash
-
-var wasMovingR: bool
-var wasPressingR: bool
-var movementInputMonitoring: Vector2 = Vector2(true, true) #movementInputMonitoring.x addresses right direction while .y addresses left direction
-
-var gdelta: float = 1
-
-var dset = false
-
-var colliderScaleLockY
-var colliderPosLockY
-
-var latched
-var wasLatched
-var crouching
-var groundPounding
-
-var anim
-var col
+var anim: AnimatedSprite2D
 var animScaleLock : Vector2
 
-#Input Variables for the whole script
-var upHold
-var downHold
-var leftHold
-var leftTap
-var leftRelease
-var rightHold
-var rightTap
-var rightRelease
-var jumpTap
-var jumpRelease
-var runHold
-var latchHold
-var dashTap
-var rollTap
-var downTap
-var twirlTap
+# Input state variables
+var upHold: bool
+var leftHold: bool
+var leftTap: bool
+#var leftRelease: bool # Not used, can be removed if not planned for future
+var rightHold: bool
+var rightTap: bool
+#var rightRelease: bool # Not used, can be removed if not planned for future
+var jumpTap: bool
+var jumpRelease: bool
+var dashTap: bool
+
+# Timer node references
+var coyote_timer_node: Timer
+var jump_buffer_timer_node: Timer
+var input_pause_timer_node: Timer
+var gravity_pause_timer_node: Timer
+var dashing_state_timer_node: Timer
+
+var was_on_floor: bool = false
 
 func _ready():
-	wasMovingR = true
 	anim = PlayerSprite
-	col = PlayerCollider
-	
 	_updateData()
-	
+	animScaleLock = abs(PlayerSprite.scale)
+	# Initialize was_on_floor. is_on_floor() is reliable after the first physics frame.
+	# Call differed ensures it runs after node is ready for physics checks.
+	call_deferred("_initialize_floor_state")
+
+func _initialize_floor_state():
+	was_on_floor = is_on_floor()
+
+
 func _updateData():
-	acceleration = maxSpeed / timeToReachMaxSpeed
-	deceleration = -maxSpeed / timeToReachZeroSpeed
+	acceleration = maxSpeed / timeToReachMaxSpeed if timeToReachMaxSpeed > 0 else maxSpeed * 1000 # Effectively instant if time is 0
+	deceleration = maxSpeed / timeToReachZeroSpeed if timeToReachZeroSpeed > 0 else maxSpeed * 1000 # Effectively instant if time is 0
 	
-	jumpMagnitude = (10.0 * jumpHeight) * gravityScale
-	jumpCount = jumps
+	# Physics-based jump magnitude: jumpHeight is target peak in pixels
+	if jumpHeight > 0:
+		jumpMagnitude = sqrt(2.0 * gravityScale * abs(jumpHeight))
+	else:
+		jumpMagnitude = 0.0
 	
 	dashMagnitude = maxSpeed * dashLength
-	dashCount = dashes
 	
-	maxSpeedLock = maxSpeed
-	
-	animScaleLock = abs(anim.scale)
-	colliderScaleLockY = col.scale.y
-	colliderPosLockY = col.position.y
-	
-	if timeToReachMaxSpeed == 0:
-		instantAccel = true
-		timeToReachMaxSpeed = 1
-	elif timeToReachMaxSpeed < 0:
-		timeToReachMaxSpeed = abs(timeToReachMaxSpeed)
-		instantAccel = false
-	else:
-		instantAccel = false
+	jumpCount = jumps # Initialize jump count
+	dashCount = dashes # Initialize dash count
 		
-	if timeToReachZeroSpeed == 0:
-		instantStop = true
-		timeToReachZeroSpeed = 1
-	elif timeToReachMaxSpeed < 0:
-		timeToReachMaxSpeed = abs(timeToReachMaxSpeed)
-		instantStop = false
-	else:
-		instantStop = false
-		
-	if jumps > 1:
+	if jumps > 1: # Multi-jumps disable coyote time and jump buffering
 		jumpBuffering = 0
 		coyoteTime = 0
 	
 	coyoteTime = abs(coyoteTime)
 	jumpBuffering = abs(jumpBuffering)
-	
-	if directionalSnap:
-		instantAccel = true
-		instantStop = true
-	
-	
-	twoWayDashHorizontal = false
-	twoWayDashVertical = false
-	eightWayDash = false
-	if dashType == 0:
-		pass
-	if dashType == 1:
-		twoWayDashHorizontal = true
-	elif dashType == 2:
-		twoWayDashVertical = true
-	elif dashType == 3:
-		twoWayDashHorizontal = true
-		twoWayDashVertical = true
-	elif dashType == 4:
-		eightWayDash = true
-	
-	
 
 func _process(_delta):
-	#INFO animations
-	#directions
-	if is_on_wall() and !is_on_floor() and latch and wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
-		latched = true
-	else:
-		latched = false
-		wasLatched = true
-		_setLatch(0.2, false)
+	# Animation Handling
+	PlayerSprite.speed_scale = 1
+	var current_animation = PlayerSprite.animation
 
-	if rightHold and !latched:
-		anim.scale.x = animScaleLock.x
-	if leftHold and !latched:
-		anim.scale.x = animScaleLock.x * -1
-	
-	#run
-	if run and idle and !dashing and !crouching:
-		if abs(velocity.x) > 0.1 and is_on_floor() and !is_on_wall():
-			anim.speed_scale = abs(velocity.x / 150)
-			anim.play("run")
-		elif abs(velocity.x) < 0.1 and is_on_floor():
-			anim.speed_scale = 1
-			anim.play("idle")
-	elif run and idle and walk and !dashing and !crouching:
-		if abs(velocity.x) > 0.1 and is_on_floor() and !is_on_wall():
-			anim.speed_scale = abs(velocity.x / 150)
-			if abs(velocity.x) < (maxSpeedLock):
-				anim.play("walk")
-			else:
-				anim.play("run")
-		elif abs(velocity.x) < 0.1 and is_on_floor():
-			anim.speed_scale = 1
-			anim.play("idle")
+	if dashing:
+		if dash and current_animation != "dash": PlayerSprite.play("dash")
+	elif not is_on_floor():
+		if velocity.y < 0: # Jumping/Rising
+			if jump and current_animation != "jump": PlayerSprite.play("jump")
+		else: # Falling
+			if falling and current_animation != "falling": PlayerSprite.play("falling")
+	elif abs(velocity.x) > 5: # Moving horizontally
+		var target_move_anim = "idle"
+		if run: target_move_anim = "run"
+		elif walk: target_move_anim = "walk"
 		
-	#jump
-	if velocity.y < 0 and jump and !dashing:
-		anim.speed_scale = 1
-		anim.play("jump")
-		
-	if velocity.y > 40 and falling and !dashing and !crouching:
-		anim.speed_scale = 1
-		anim.play("falling")
-		
-	if latch and slide:
-		#wall slide and latch
-		if latched and !wasLatched:
-			anim.speed_scale = 1
-			anim.play("latch")
-		if is_on_wall() and velocity.y > 0 and slide and anim.animation != "slide" and wallSliding != 1:
-			anim.speed_scale = 1
-			anim.play("slide")
-			
-		#dash
-		if dashing:
-			anim.speed_scale = 1
-			anim.play("dash")
-			
-		#crouch
-		if crouching and !rolling:
-			if abs(velocity.x) > 10:
-				anim.speed_scale = 1
-				anim.play("crouch_walk")
-			else:
-				anim.speed_scale = 1
-				anim.play("crouch_idle")
-		
-		if rollTap and canRoll and roll:
-			anim.speed_scale = 1
-			anim.play("roll")
-		
-		
-		
+		if current_animation != target_move_anim:
+			PlayerSprite.play(target_move_anim)
+		elif idle and current_animation != "idle" and target_move_anim == "idle": # Fallback if no run/walk
+			PlayerSprite.play("idle")
+	else: # Idle on floor
+		if idle and current_animation != "idle": PlayerSprite.play("idle")
 
-func _physics_process(delta):
-	if !dset:
-		gdelta = delta
-		dset = true
-	#INFO Input Detectio. Define your inputs from the project settings here.
+	# Flip sprite based on movement direction
+	if velocity.x > 0.1:
+		PlayerSprite.scale.x = animScaleLock.x
+	elif velocity.x < -0.1:
+		PlayerSprite.scale.x = -animScaleLock.x
+
+func _physics_process(delta: float):
+	# Input Detection
 	leftHold = Input.is_action_pressed("left")
 	rightHold = Input.is_action_pressed("right")
 	upHold = Input.is_action_pressed("up")
-	downHold = Input.is_action_pressed("down")
 	leftTap = Input.is_action_just_pressed("left")
 	rightTap = Input.is_action_just_pressed("right")
-	leftRelease = Input.is_action_just_released("left")
-	rightRelease = Input.is_action_just_released("right")
+	#leftRelease = Input.is_action_just_released("left")   # Kept commented if needed later
+	#rightRelease = Input.is_action_just_released("right") # Kept commented if needed later
 	jumpTap = Input.is_action_just_pressed("jump")
 	jumpRelease = Input.is_action_just_released("jump")
-	runHold = Input.is_action_pressed("run")
-	latchHold = Input.is_action_pressed("latch")
 	dashTap = Input.is_action_just_pressed("dash")
-	rollTap = Input.is_action_just_pressed("roll")
-	downTap = Input.is_action_just_pressed("down")
-	twirlTap = Input.is_action_just_pressed("twirl")
 	
-	
-	#INFO Left and Right Movement
-	
-	if rightHold and leftHold and movementInputMonitoring:
-		if !instantStop:
-			_decelerate(delta, false)
-		else:
-			velocity.x = -0.1
-	elif rightHold and movementInputMonitoring.x:
-		if velocity.x > maxSpeed or instantAccel:
-			velocity.x = maxSpeed
-		else:
-			velocity.x += acceleration * delta
-		if velocity.x < 0:
-			if !instantStop:
-				_decelerate(delta, false)
-			else:
-				velocity.x = -0.1
+	# Horizontal Movement
+	var target_x_velocity = 0.0
+	if rightHold and movementInputMonitoring.x:
+		target_x_velocity = maxSpeed
 	elif leftHold and movementInputMonitoring.y:
-		if velocity.x < -maxSpeed or instantAccel:
-			velocity.x = -maxSpeed
-		else:
-			velocity.x -= acceleration * delta
-		if velocity.x > 0:
-			if !instantStop:
-				_decelerate(delta, false)
-			else:
-				velocity.x = 0.1
-				
-	if velocity.x > 0:
-		wasMovingR = true
-	elif velocity.x < 0:
-		wasMovingR = false
-		
-	if rightTap:
-		wasPressingR = true
-	if leftTap:
-		wasPressingR = false
+		target_x_velocity = -maxSpeed
 	
-	if runningModifier and !runHold:
-		maxSpeed = maxSpeedLock / 2
-	elif is_on_floor(): 
-		maxSpeed = maxSpeedLock
-	
-	if !(leftHold or rightHold):
-		if !instantStop:
-			_decelerate(delta, false)
-		else:
-			velocity.x = 0
+	if target_x_velocity != 0: # Player wants to move
+		velocity.x = move_toward(velocity.x, target_x_velocity, (acceleration if timeToReachMaxSpeed > 0 else maxSpeed * 1000) * delta)
+	else: # Player wants to stop
+		velocity.x = move_toward(velocity.x, 0, (deceleration if timeToReachZeroSpeed > 0 else maxSpeed * 1000) * delta)
+
+	if velocity.x > 0.1: wasMovingR = true
+	elif velocity.x < -0.1: wasMovingR = false
+	if rightTap: wasPressingR = true
+	if leftTap: wasPressingR = false
 			
-	#INFO Crouching
-	if crouch:
-		if downHold and is_on_floor():
-			crouching = true
-		elif !downHold and ((runHold and runningModifier) or !runningModifier) and !rolling:
-			crouching = false
-			
-	if !is_on_floor():
-		crouching = false
-			
-	if crouching:
-		maxSpeed = maxSpeedLock / 2
-		col.scale.y = colliderScaleLockY / 2
-		col.position.y = colliderPosLockY + (8 * colliderScaleLockY)
-	else:
-		maxSpeed = maxSpeedLock
-		col.scale.y = colliderScaleLockY
-		col.position.y = colliderPosLockY
-		
-	#INFO Rolling
-	if canRoll and is_on_floor() and rollTap and crouching:
-		_rollingTime(0.75)
-		if wasPressingR and !(upHold):
-			velocity.y = 0
-			velocity.x = maxSpeedLock * rollLength
-			dashCount += -1
-			movementInputMonitoring = Vector2(false, false)
-			_inputPauseReset(rollLength * 0.0625)
-		elif !(upHold):
-			velocity.y = 0
-			velocity.x = -maxSpeedLock * rollLength
-			dashCount += -1
-			movementInputMonitoring = Vector2(false, false)
-			_inputPauseReset(rollLength * 0.0625)
-		
-	if canRoll and rolling:
-		#if you want your player to become immune or do something else while rolling, add that here.
-		pass
-			
-	#INFO Jump and Gravity
-	if velocity.y > 0:
-		appliedGravity = gravityScale * descendingGravityFactor
-	else:
-		appliedGravity = gravityScale
-	
-	if is_on_wall() and !groundPounding:
-		appliedTerminalVelocity = terminalVelocity / wallSliding
-		if wallLatching and ((wallLatchingModifer and latchHold) or !wallLatchingModifer):
-			appliedGravity = 0
-			
-			if velocity.y < 0:
-				velocity.y += 50
-			if velocity.y > 0:
-				velocity.y = 0
-				
-			if wallLatchingModifer and latchHold and movementInputMonitoring == Vector2(true, true):
-				velocity.x = 0
-			
-		elif wallSliding != 1 and velocity.y > 0:
-			appliedGravity = appliedGravity / wallSliding
-	elif !is_on_wall() and !groundPounding:
-		appliedTerminalVelocity = terminalVelocity
-	
+	# Gravity
 	if gravityActive:
-		if velocity.y < appliedTerminalVelocity:
-			velocity.y += appliedGravity
-		elif velocity.y > appliedTerminalVelocity:
-				velocity.y = appliedTerminalVelocity
+		var current_gravity_pull = gravityScale * (descendingGravityFactor if velocity.y > 0 else 1.0)
+		velocity.y += current_gravity_pull * delta
+		velocity.y = min(velocity.y, terminalVelocity)
 		
 	if shortHopAkaVariableJumpHeight and jumpRelease and velocity.y < 0:
-		velocity.y = velocity.y / 2
+		velocity.y *= 0.5 # More concise
 	
-	if jumps == 1:
-		if !is_on_floor() and !is_on_wall():
+	# Coyote Time and Jump Buffering Logic
+	var currently_on_floor = is_on_floor()
+
+	if jumps == 1: # Coyote time and buffering only for single jump mode
+		if was_on_floor and not currently_on_floor and not is_on_wall(): # Just left ground (not by wall interaction)
 			if coyoteTime > 0:
 				coyoteActive = true
-				_coyoteTime()
-				
-		if jumpTap and !is_on_wall():
-			if coyoteActive:
-				coyoteActive = false
-				_jump()
-			if jumpBuffering > 0:
-				jumpWasPressed = true
-				_bufferJump()
-			elif jumpBuffering == 0 and coyoteTime == 0 and is_on_floor():
-				_jump()	
-		elif jumpTap and is_on_wall() and !is_on_floor():
-			if wallJump and !latched:
-				_wallJump()
-			elif wallJump and latched:
-				_wallJump()
-		elif jumpTap and is_on_floor():
-			_jump()
+				_start_timer("coyote", coyoteTime, "_on_coyote_timer_timeout")
 		
-		
-			
-		if is_on_floor():
-			jumpCount = jumps
-			coyoteActive = true
+		if currently_on_floor:
+			jumpCount = jumps # Replenish jump
+			coyoteActive = true # Ready for next fall/jump
+			_stop_timer("coyote")
 			if jumpWasPressed:
 				_jump()
+				_stop_timer("jump_buffer")
 
-	elif jumps > 1:
-		if is_on_floor():
-			jumpCount = jumps
-		if jumpTap and jumpCount > 0 and !is_on_wall():
-			velocity.y = -jumpMagnitude
-			jumpCount = jumpCount - 1
-			_endGroundPound()
-		elif jumpTap and is_on_wall() and wallJump:
+	# Jump Input
+	if jumpTap:
+		if currently_on_floor:
+			_jump()
+		elif wallJump and is_on_wall() and not currently_on_floor:
 			_wallJump()
+		elif jumps == 1 and coyoteActive: # Coyote Jump
+			_jump()
+		elif jumpCount > 0 and jumps > 1: # Air jump for multi-jump
+			velocity.y = -jumpMagnitude
+			jumpCount -= 1
+		elif jumpBuffering > 0 and jumps == 1: # Buffer jump
+			jumpWasPressed = true
+			_start_timer("jump_buffer", jumpBuffering, "_on_jump_buffer_timer_timeout")
 			
-			
-	#INFO dashing
-	if is_on_floor():
-		dashCount = dashes
-	if eightWayDash and dashTap and dashCount > 0 and !rolling:
-		var input_direction = Input.get_vector("left", "right", "up", "down")
-		var dTime = 0.0625 * dashLength
-		_dashingTime(dTime)
-		_pauseGravity(dTime)
-		velocity = dashMagnitude * input_direction
-		dashCount += -1
-		movementInputMonitoring = Vector2(false, false)
-		_inputPauseReset(dTime)
-	
-	if twoWayDashVertical and dashTap and dashCount > 0 and !rolling:
-		var dTime = 0.0625 * dashLength
-		if upHold and downHold:
-			_placeHolder()
-		elif upHold:
-			_dashingTime(dTime)
-			_pauseGravity(dTime)
+	# Dashing
+	if currently_on_floor:
+		dashCount = dashes # Replenish dashes
+		
+	if dashTap and dashCount > 0 and not dashing:
+		var dTime = 0.0625 * dashLength # Dash duration based on length
+		var dash_vector = Vector2.ZERO
+
+		match dashType:
+			1: # Horizontal
+				dash_vector = Vector2.RIGHT if wasPressingR else Vector2.LEFT
+			2: # Vertical (Upwards only)
+				if upHold: dash_vector = Vector2.UP
+			3: # Four Way (L/R/Up)
+				var h_input = Input.get_action_strength("right") - Input.get_action_strength("left")
+				var v_input = -1.0 if upHold else 0.0 # Only up
+				dash_vector = Vector2(h_input, v_input).normalized() if Vector2(h_input, v_input) != Vector2.ZERO else Vector2.ZERO
+			4: # Eight Way (L/R/Up + non-downward diagonals)
+				var input_dir_raw = Input.get_vector("left", "right", "up", "down")
+				# Filter out explicit downward movement for the dash
+				var filtered_y = input_dir_raw.y if input_dir_raw.y <= 0 else 0.0
+				dash_vector = Vector2(input_dir_raw.x, filtered_y).normalized() if Vector2(input_dir_raw.x, filtered_y) != Vector2.ZERO else Vector2.ZERO
+		
+		if dash_vector != Vector2.ZERO:
+			velocity = dashMagnitude * dash_vector
+			dashing = true
+			_start_timer("dashing_state", dTime, "_on_dashing_state_timer_timeout")
+			gravityActive = false
+			_start_timer("gravity_pause", dTime, "_on_gravity_pause_timer_timeout")
+			dashCount -= 1
+			movementInputMonitoring = Vector2.ZERO # Pause L/R input
+			_start_timer("input_pause", dTime, "_on_input_pause_timer_timeout")
+
+	if dashing and dashCancel: # Dash cancelling
+		if (velocity.x > 0 and leftTap) or (velocity.x < 0 and rightTap):
 			velocity.x = 0
-			velocity.y = -dashMagnitude
-			dashCount += -1
-			movementInputMonitoring = Vector2(false, false)
-			_inputPauseReset(dTime)
-		elif downHold and dashCount > 0:
-			_dashingTime(dTime)
-			_pauseGravity(dTime)
-			velocity.x = 0
-			velocity.y = dashMagnitude
-			dashCount += -1
-			movementInputMonitoring = Vector2(false, false)
-			_inputPauseReset(dTime)
-	
-	if twoWayDashHorizontal and dashTap and dashCount > 0 and !rolling:
-		var dTime = 0.0625 * dashLength
-		if wasPressingR and !(upHold or downHold):
-			velocity.y = 0
-			velocity.x = dashMagnitude
-			_pauseGravity(dTime)
-			_dashingTime(dTime)
-			dashCount += -1
-			movementInputMonitoring = Vector2(false, false)
-			_inputPauseReset(dTime)
-		elif !(upHold or downHold):
-			velocity.y = 0
-			velocity.x = -dashMagnitude
-			_pauseGravity(dTime)
-			_dashingTime(dTime)
-			dashCount += -1
-			movementInputMonitoring = Vector2(false, false)
-			_inputPauseReset(dTime)
 			
-	if dashing and velocity.x > 0 and leftTap and dashCancel:
-		velocity.x = 0
-	if dashing and velocity.x < 0 and rightTap and dashCancel:
-		velocity.x = 0
-	
-	#INFO Corner Cutting
-	if cornerCutting:
-		if velocity.y < 0 and leftRaycast.is_colliding() and !rightRaycast.is_colliding() and !middleRaycast.is_colliding():
-			position.x += correctionAmount
-		if velocity.y < 0 and !leftRaycast.is_colliding() and rightRaycast.is_colliding() and !middleRaycast.is_colliding():
-			position.x -= correctionAmount
-			
-	#INFO Ground Pound
-	if groundPound and downTap and !is_on_floor() and !is_on_wall():
-		groundPounding = true
-		gravityActive = false
-		velocity.y = 0
-		await get_tree().create_timer(groundPoundPause).timeout
-		_groundPound()
-	if is_on_floor() and groundPounding:
-		_endGroundPound()
 	move_and_slide()
-	
-	if upToCancel and upHold and groundPound:
-		_endGroundPound()
-	
-func _bufferJump():
-	await get_tree().create_timer(jumpBuffering).timeout
-	jumpWasPressed = false
+	was_on_floor = currently_on_floor
 
-func _coyoteTime():
-	await get_tree().create_timer(coyoteTime).timeout
+# --- Timer Management ---
+func _start_timer(timer_type: String, duration: float, timeout_method: String):
+	var timer_node_ref: Timer = get(timer_type + "_timer_node")
+	if timer_node_ref != null and is_instance_valid(timer_node_ref): # Clean up existing timer
+		timer_node_ref.stop()
+		timer_node_ref.queue_free()
+
+	var new_timer = Timer.new()
+	new_timer.name = timer_type.capitalize() + "Timer" # Concise name
+	new_timer.wait_time = duration
+	new_timer.one_shot = true
+	new_timer.connect("timeout", Callable(self, timeout_method))
+	add_child(new_timer)
+	new_timer.start()
+	set(timer_type + "_timer_node", new_timer)
+
+func _stop_timer(timer_type: String):
+	var timer_node_ref: Timer = get(timer_type + "_timer_node")
+	if timer_node_ref != null and is_instance_valid(timer_node_ref):
+		timer_node_ref.stop()
+		timer_node_ref.queue_free()
+		set(timer_type + "_timer_node", null)
+
+# --- Timer Timeout Callbacks ---
+func _on_coyote_timer_timeout():
 	coyoteActive = false
-	jumpCount += -1
+	_stop_timer("coyote")
 
-	
+func _on_jump_buffer_timer_timeout():
+	jumpWasPressed = false
+	_stop_timer("jump_buffer")
+
+func _on_input_pause_timer_timeout():
+	movementInputMonitoring = Vector2.ONE # Resume L/R input
+	_stop_timer("input_pause")
+
+func _on_gravity_pause_timer_timeout():
+	gravityActive = true
+	_stop_timer("gravity_pause")
+
+func _on_dashing_state_timer_timeout():
+	dashing = false
+	_stop_timer("dashing_state")
+
+# --- Action Functions ---
 func _jump():
-	if jumpCount > 0:
+	if jumpCount > 0 or coyoteActive: # coyoteActive implies a jump is available
 		velocity.y = -jumpMagnitude
-		jumpCount += -1
-		jumpWasPressed = false
+		if not coyoteActive : jumpCount -= 1 # Don't double-consume if it was a multi-jump that also had coyote
+		
+		if coyoteActive: # Consume coyote
+			coyoteActive = false
+			_stop_timer("coyote")
+		if jumpWasPressed: # Consume buffer
+			jumpWasPressed = false
+			_stop_timer("jump_buffer")
 		
 func _wallJump():
-	var horizontalWallKick = abs(jumpMagnitude * cos(wallKickAngle * (PI / 180)))
-	var verticalWallKick = abs(jumpMagnitude * sin(wallKickAngle * (PI / 180)))
-	velocity.y = -verticalWallKick
-	var dir = 1
-	if wallLatchingModifer and latchHold:
-		dir = -1
-	if wasMovingR:
-		velocity.x = -horizontalWallKick  * dir
-	else:
-		velocity.x = horizontalWallKick * dir
-	if inputPauseAfterWallJump != 0:
-		movementInputMonitoring = Vector2(false, false)
-		_inputPauseReset(inputPauseAfterWallJump)
-			
-func _setLatch(delay, setBool):
-	await get_tree().create_timer(delay).timeout
-	wasLatched = setBool
-			
-func _inputPauseReset(time):
-	await get_tree().create_timer(time).timeout
-	movementInputMonitoring = Vector2(true, true)
+	# Wall jump does not consume jumpCount unless explicitly designed to
+	var angle_rad = deg_to_rad(wallKickAngle)
+	var horizontal_kick = abs(jumpMagnitude * cos(angle_rad)) # Use jumpMagnitude as base for consistency
+	var vertical_kick = abs(jumpMagnitude * sin(angle_rad))
 	
-
-func _decelerate(delta, vertical):
-	if !vertical:
-		if velocity.x > 0:
-			velocity.x += deceleration * delta
-		elif velocity.x < 0:
-			velocity.x -= deceleration * delta
-	elif vertical and velocity.y > 0:
-		velocity.y += deceleration * delta
-
-
-func _pauseGravity(time):
-	gravityActive = false
-	await get_tree().create_timer(time).timeout
-	gravityActive = true
-
-func _dashingTime(time):
-	dashing = true
-	await get_tree().create_timer(time).timeout
-	dashing = false
-
-func _rollingTime(time):
-	rolling = true
-	await get_tree().create_timer(time).timeout
-	rolling = false	
-
-func _groundPound():
-	appliedTerminalVelocity = terminalVelocity * 10
-	velocity.y = jumpMagnitude * 2
+	velocity.y = -vertical_kick
 	
-func _endGroundPound():
-	groundPounding = false
-	appliedTerminalVelocity = terminalVelocity
-	gravityActive = true
+	var wall_normal_x = get_wall_normal().x
+	if wall_normal_x != 0:
+		velocity.x = wall_normal_x * horizontal_kick # Push away from wall
+	else: # Fallback if normal is somehow zero (e.g. perfect corner)
+		velocity.x = -horizontal_kick if wasMovingR else horizontal_kick # Push opposite to last movement
 
-func _placeHolder():
-	print("")
+	if inputPauseAfterWallJump > 0:
+		movementInputMonitoring = Vector2.ZERO
+		_start_timer("input_pause", inputPauseAfterWallJump, "_on_input_pause_timer_timeout")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c6p7iyf0nyhvi"]
+[gd_scene load_steps=26 format=3 uid="uid://c6p7iyf0nyhvi"]
 
 [ext_resource type="Script" uid="uid://d21nwq52lhu8a" path="res://addons/Ultimate-Platform-Controller-2D/UltimatePlatformerController.gd" id="1_a38lo"]
 [ext_resource type="Texture2D" uid="uid://fp7wlk7nhyb7" path="res://assets/anims/mc_idle/idle00.png" id="2_a38lo"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://du8wu3gqsfox7" path="res://assets/anims/mc_walk/walk09.png" id="11_4ni07"]
 [ext_resource type="Texture2D" uid="uid://cc7d2l8iq0vye" path="res://assets/anims/mc_walk/walk10.png" id="12_l71n6"]
 [ext_resource type="Texture2D" uid="uid://4d46yjcety3h" path="res://assets/anims/mc_walk/walk11.png" id="13_ke2ow"]
+[ext_resource type="Script" uid="uid://dr8bvnfebp76" path="res://addons/health_hitbox_hurtbox/health/health.gd" id="23_4ni07"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jej6c"]
 animations = [{
@@ -108,20 +109,21 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a38lo"]
-size = Vector2(12, 14)
+size = Vector2(10, 14)
 
-[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("PlayerSprite")]
 script = ExtResource("1_a38lo")
 PlayerSprite = NodePath("AnimatedSprite2D")
-PlayerCollider = NodePath("CollisionShape2D")
 maxSpeed = 180.0
+timeToReachMaxSpeed = 0.1
 timeToReachZeroSpeed = 0.3
-jumpHeight = 1.9
-gravityScale = 15.0
+jumpHeight = 52.0
 descendingGravityFactor = 1.5
+coyoteTime = 0.1
+jumpBuffering = 0.1
+wallJump = true
 dashType = 4
 dashLength = 1.8
-canRoll = true
 run = true
 jump = true
 idle = true
@@ -132,7 +134,7 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 9)
+position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_a38lo")
 
 [node name="dash_timer" type="Timer" parent="."]
@@ -140,6 +142,10 @@ wait_time = 0.2
 
 [node name="dash_again_timer" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("23_4ni07")
+metadata/_custom_type_script = "uid://dr8bvnfebp76"
 
 [connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="dash_again_timer" to="." method="_on_dash_again_timer_timeout"]
