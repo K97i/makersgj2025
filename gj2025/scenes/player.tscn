@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://c6p7iyf0nyhvi"]
 
-[ext_resource type="Script" uid="uid://b0tegrq10ko3n" path="res://scripts/character_body_2d.gd" id="1_jej6c"]
+[ext_resource type="Script" uid="uid://d21nwq52lhu8a" path="res://addons/Ultimate-Platform-Controller-2D/UltimatePlatformerController.gd" id="1_a38lo"]
 [ext_resource type="Texture2D" uid="uid://fp7wlk7nhyb7" path="res://assets/anims/mc_idle/idle00.png" id="2_a38lo"]
 [ext_resource type="Texture2D" uid="uid://hq2cwv1qs6s6" path="res://assets/anims/mc_walk/walk00.png" id="2_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://bdc7a2rimdbnx" path="res://assets/anims/mc_idle/idle01.png" id="3_4ni07"]
@@ -103,15 +103,28 @@ animations = [{
 "texture": ExtResource("13_ke2ow")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"run",
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f1ej7"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a38lo"]
+size = Vector2(12, 14)
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-script = ExtResource("1_jej6c")
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("PlayerSprite", "PlayerCollider")]
+script = ExtResource("1_a38lo")
+PlayerSprite = NodePath("AnimatedSprite2D")
+PlayerCollider = NodePath("CollisionShape2D")
+maxSpeed = 180.0
+timeToReachZeroSpeed = 0.3
+jumpHeight = 1.9
+gravityScale = 15.0
+descendingGravityFactor = 1.5
+dashType = 4
+dashLength = 1.8
+canRoll = true
+run = true
+jump = true
+idle = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_jej6c")
@@ -119,8 +132,8 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 11)
-shape = SubResource("CircleShape2D_f1ej7")
+position = Vector2(-1, 9)
+shape = SubResource("RectangleShape2D_a38lo")
 
 [node name="dash_timer" type="Timer" parent="."]
 wait_time = 0.2
