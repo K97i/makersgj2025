@@ -1,0 +1,54 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6p7iyf0nyhvi"]
+
+[ext_resource type="Script" uid="uid://d21nwq52lhu8a" path="res://addons/Ultimate-Platform-Controller-2D/UltimatePlatformerController.gd" id="1_a38lo"]
+[ext_resource type="SpriteFrames" uid="uid://b36sdv1sv4v58" path="res://entities/player/torso_animframes.tres" id="2_bls4j"]
+[ext_resource type="SpriteFrames" uid="uid://caccgn0okcesg" path="res://entities/player/legs_animframes.tres" id="3_fkugw"]
+[ext_resource type="Script" uid="uid://dr8bvnfebp76" path="res://addons/health_hitbox_hurtbox/health/health.gd" id="23_4ni07"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a38lo"]
+size = Vector2(10, 25)
+
+[node name="CharacterBody2D" type="CharacterBody2D" node_paths=PackedStringArray("PlayerSprite")]
+disable_mode = 1
+script = ExtResource("1_a38lo")
+PlayerSprite = NodePath("TorsoAnimatedSprite2D")
+maxSpeed = 180.0
+timeToReachMaxSpeed = 0.1
+timeToReachZeroSpeed = 0.3
+jumpHeight = 52.0
+descendingGravityFactor = 1.5
+coyoteTime = 0.1
+jumpBuffering = 0.1
+wallJump = true
+dashType = 4
+dashLength = 1.8
+run = true
+jump = true
+idle = true
+
+[node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -2)
+sprite_frames = ExtResource("3_fkugw")
+animation = &"idle"
+
+[node name="TorsoAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
+sprite_frames = ExtResource("2_bls4j")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -0.5)
+shape = SubResource("RectangleShape2D_a38lo")
+
+[node name="dash_timer" type="Timer" parent="."]
+wait_time = 0.2
+
+[node name="dash_again_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("23_4ni07")
+metadata/_custom_type_script = "uid://dr8bvnfebp76"
+
+[connection signal="timeout" from="dash_timer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="dash_again_timer" to="." method="_on_dash_again_timer_timeout"]
