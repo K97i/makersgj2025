@@ -364,4 +364,4 @@ func _on_parrying_state_exited(extra_arg_0: String, extra_arg_1: bool) -> void:
 
 
 func _on_parry_hit_box_2d_parry_successful(hit_box: HitBox2D) -> void:
-	print("nice!!!") # Replace with function body.
+	print("player: parry success!!!") # Replace with function body.

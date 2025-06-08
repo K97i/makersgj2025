@@ -1,6 +1,6 @@
 extends CombatState
 
-@export var block_threshold = 0.1
+@export var block_threshold = 0.3
 @export var holding_sword_state: StateMachineState = null
 @export var blocking_state: StateMachineState = null
 @export var parrying_state: StateMachineState = null

@@ -1,6 +1,6 @@
 extends CombatState
 
-@export_custom(PROPERTY_HINT_NONE, "suffix:s") var parry_time: float = 0.1875
+@export_custom(PROPERTY_HINT_NONE, "suffix:s") var parry_time: float = 0.25
 
 @export var empty_state: StateMachineState = null
 @export var holding_sword_state: StateMachineState = null
