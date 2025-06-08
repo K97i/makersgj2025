@@ -7,6 +7,8 @@ var _current_time: float = 0.0
 
 func _enter_state():
 	print("swinging")
+	character.speed_multiplier = 0.8
+
 
 func _process(delta: float) -> void:
 	_current_time += delta

@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=3 uid="uid://bsw13y2k72xns"]
+[gd_scene load_steps=123 format=3 uid="uid://bsw13y2k72xns"]
 
 [ext_resource type="Script" uid="uid://d21nwq52lhu8a" path="res://addons/Ultimate-Platform-Controller-2D/UltimatePlatformerController.gd" id="1_2qma8"]
 [ext_resource type="SpriteFrames" uid="uid://caccgn0okcesg" path="res://entities/player/resources/legs_animframes.tres" id="2_j3ovn"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" uid="uid://bcqa1x1wcf57j" path="res://entities/player/scripts/combat/empty_state.gd" id="15_b2kln"]
 [ext_resource type="Script" uid="uid://ddhfr0kdab5q2" path="res://entities/player/scripts/combatholding_sword.gd" id="16_we0b7"]
 [ext_resource type="Script" uid="uid://coi18cdfax2fx" path="res://entities/player/scripts/combat/swinging_sword.gd" id="17_mtric"]
+[ext_resource type="Script" uid="uid://dfn5asf2eygnw" path="res://entities/player/scripts/combat/blocking_state.gd" id="18_eyb6c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a38lo"]
 size = Vector2(14, 23)
@@ -360,6 +361,54 @@ type = 2
 amount = 1
 
 [sub_resource type="Resource" id="Resource_gv6fn"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_2vqvu"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_yb4xh"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_ix1gt"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_sym6v"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_dnai7"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_u8til"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_qydng"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_1bn7s"]
 script = ExtResource("8_b2kln")
 affect = 1
 type = 2
@@ -1758,7 +1807,6 @@ idle = true
 [node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_j3ovn")
 animation = &"idle"
-frame_progress = 0.111204
 
 [node name="TorsoAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("3_afbqv")
@@ -1791,7 +1839,7 @@ shape = SubResource("RectangleShape2D_we0b7")
 
 [node name="SwordHitBox2D" type="Area2D" parent="."]
 script = ExtResource("7_3wlsy")
-actions = Array[ExtResource("8_b2kln")]([SubResource("Resource_we0b7"), SubResource("Resource_mtric"), SubResource("Resource_eyb6c"), SubResource("Resource_221hk"), SubResource("Resource_50fht"), SubResource("Resource_wuv6x"), SubResource("Resource_qpopc"), SubResource("Resource_wq0jh"), SubResource("Resource_gt4e4"), SubResource("Resource_24ehl"), SubResource("Resource_bwdx1"), SubResource("Resource_vewsg"), SubResource("Resource_2soq1"), SubResource("Resource_8q4fm"), SubResource("Resource_np63p"), SubResource("Resource_0eo6o"), SubResource("Resource_ttr27"), SubResource("Resource_13wue"), SubResource("Resource_wy7bt"), SubResource("Resource_geky7"), SubResource("Resource_qwspa"), SubResource("Resource_r633c"), SubResource("Resource_pacje"), SubResource("Resource_2h0qb"), SubResource("Resource_mmk7k"), SubResource("Resource_g3pa7"), SubResource("Resource_7otdo"), SubResource("Resource_c112w"), SubResource("Resource_u37te"), SubResource("Resource_ssgi7"), SubResource("Resource_rtlkk"), SubResource("Resource_t1t22"), SubResource("Resource_arp52"), SubResource("Resource_jjk8f"), SubResource("Resource_cnswy"), SubResource("Resource_q5bfg"), SubResource("Resource_p22ii"), SubResource("Resource_7rgwd"), SubResource("Resource_24so6"), SubResource("Resource_sk710"), SubResource("Resource_kbbq5"), SubResource("Resource_akixf"), SubResource("Resource_3y563"), SubResource("Resource_sgfia"), SubResource("Resource_sv458"), SubResource("Resource_pth52"), SubResource("Resource_4iu2e"), SubResource("Resource_0q7bw"), SubResource("Resource_qb5t2"), SubResource("Resource_qsjf6"), SubResource("Resource_k3n4f"), SubResource("Resource_gmffv"), SubResource("Resource_rqau1"), SubResource("Resource_gv6fn")])
+actions = Array[ExtResource("8_b2kln")]([SubResource("Resource_we0b7"), SubResource("Resource_mtric"), SubResource("Resource_eyb6c"), SubResource("Resource_221hk"), SubResource("Resource_50fht"), SubResource("Resource_wuv6x"), SubResource("Resource_qpopc"), SubResource("Resource_wq0jh"), SubResource("Resource_gt4e4"), SubResource("Resource_24ehl"), SubResource("Resource_bwdx1"), SubResource("Resource_vewsg"), SubResource("Resource_2soq1"), SubResource("Resource_8q4fm"), SubResource("Resource_np63p"), SubResource("Resource_0eo6o"), SubResource("Resource_ttr27"), SubResource("Resource_13wue"), SubResource("Resource_wy7bt"), SubResource("Resource_geky7"), SubResource("Resource_qwspa"), SubResource("Resource_r633c"), SubResource("Resource_pacje"), SubResource("Resource_2h0qb"), SubResource("Resource_mmk7k"), SubResource("Resource_g3pa7"), SubResource("Resource_7otdo"), SubResource("Resource_c112w"), SubResource("Resource_u37te"), SubResource("Resource_ssgi7"), SubResource("Resource_rtlkk"), SubResource("Resource_t1t22"), SubResource("Resource_arp52"), SubResource("Resource_jjk8f"), SubResource("Resource_cnswy"), SubResource("Resource_q5bfg"), SubResource("Resource_p22ii"), SubResource("Resource_7rgwd"), SubResource("Resource_24so6"), SubResource("Resource_sk710"), SubResource("Resource_kbbq5"), SubResource("Resource_akixf"), SubResource("Resource_3y563"), SubResource("Resource_sgfia"), SubResource("Resource_sv458"), SubResource("Resource_pth52"), SubResource("Resource_4iu2e"), SubResource("Resource_0q7bw"), SubResource("Resource_qb5t2"), SubResource("Resource_qsjf6"), SubResource("Resource_k3n4f"), SubResource("Resource_gmffv"), SubResource("Resource_rqau1"), SubResource("Resource_gv6fn"), SubResource("Resource_2vqvu"), SubResource("Resource_yb4xh"), SubResource("Resource_ix1gt"), SubResource("Resource_sym6v"), SubResource("Resource_dnai7"), SubResource("Resource_u8til"), SubResource("Resource_qydng"), SubResource("Resource_1bn7s")])
 metadata/_custom_type_script = "uid://chrsg1fc53qs3"
 
 [node name="SwordShape2D" type="CollisionShape2D" parent="SwordHitBox2D" groups=["collision_shapes"]]
@@ -1866,8 +1914,11 @@ attack_time = 0.4
 holding_sword_state = NodePath("../HoldingSword")
 metadata/_custom_type_script = "uid://br13fyyt3y077"
 
-[node name="Blocking" type="Node" parent="CombatStateMachine"]
-script = ExtResource("13_gx6sm")
+[node name="Blocking" type="Node" parent="CombatStateMachine" node_paths=PackedStringArray("empty_state", "holding_sword_state", "swinging_sword_state")]
+script = ExtResource("18_eyb6c")
+empty_state = NodePath("../Empty")
+holding_sword_state = NodePath("../HoldingSword")
+swinging_sword_state = NodePath("../SwingingSword")
 metadata/_custom_type_script = "uid://br13fyyt3y077"
 
 [node name="Parrying" type="Node" parent="CombatStateMachine"]

@@ -28,6 +28,10 @@ window/size/mode=4
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/finite_state_machine/plugin.cfg", "res://addons/health_hitbox_hurtbox/plugin.cfg", "res://addons/inventory-system/plugin.cfg")
 
+[global_group]
+
+player=""
+
 [input]
 
 right={
@@ -95,6 +99,7 @@ defend={
 2d_physics/layer_7="Enemy Hitbox"
 2d_physics/layer_8="Enemy Hurtbox"
 2d_physics/layer_18="Projectiles"
+2d_physics/layer_20="Environment"
 
 [rendering]
 

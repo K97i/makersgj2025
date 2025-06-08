@@ -85,6 +85,7 @@ var was_on_floor: bool = false
 var collision_positions: Array
 
 var is_holding_sword: bool = false
+var speed_multiplier: float = 1.0
 
 func _ready():
 	var collision_shapes = get_tree().get_nodes_in_group("collision_shapes")
@@ -178,7 +179,7 @@ func _physics_process(delta: float):
 		target_x_velocity = -maxSpeed
 	
 	if target_x_velocity != 0: # Player wants to move
-		velocity.x = move_toward(velocity.x, target_x_velocity, (acceleration if timeToReachMaxSpeed > 0 else maxSpeed * 1000) * delta)
+		velocity.x = move_toward(velocity.x, target_x_velocity * speed_multiplier, (acceleration if timeToReachMaxSpeed > 0 else maxSpeed * 1000) * delta)
 	else: # Player wants to stop
 		velocity.x = move_toward(velocity.x, 0, (deceleration if timeToReachZeroSpeed > 0 else maxSpeed * 1000) * delta)
 

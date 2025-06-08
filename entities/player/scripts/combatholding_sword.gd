@@ -11,9 +11,8 @@ var hold_time = 0.0
 var is_parry_candidate = false
 
 func _enter_state():
-	print("holding")
 	character.is_holding_sword = true
-
+	character.speed_multiplier = 0.8
 	hold_time = 0.0
 	is_parry_candidate = false
 	

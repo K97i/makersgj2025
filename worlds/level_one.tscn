@@ -1,10 +1,45 @@
-[gd_scene load_steps=6 format=4 uid="uid://x57k1rlyfkuo"]
+[gd_scene load_steps=14 format=4 uid="uid://x57k1rlyfkuo"]
 
 [ext_resource type="Texture2D" uid="uid://xq2o87sif2bw" path="res://worlds/backgrounds/spaniard/sky.png" id="1_4flu0"]
 [ext_resource type="TileSet" uid="uid://mj03d870ub8g" path="res://worlds/tilesets/world_tileset.tres" id="1_5x5r3"]
 [ext_resource type="Texture2D" uid="uid://d2lbb7e4eaunf" path="res://worlds/backgrounds/spaniard/clouds.png" id="2_saslb"]
 [ext_resource type="Texture2D" uid="uid://b3tj0krt2ucll" path="res://worlds/backgrounds/spaniard/mountains.png" id="3_hrpaa"]
 [ext_resource type="PackedScene" uid="uid://bsw13y2k72xns" path="res://entities/player/player.tscn" id="5_hrpaa"]
+[ext_resource type="Script" uid="uid://chrsg1fc53qs3" path="res://addons/health_hitbox_hurtbox/2d/hit_box_2d/basic_hit_box_2d.gd" id="6_xjn5d"]
+[ext_resource type="Script" uid="uid://hrwhd52e5mkq" path="res://addons/health_hitbox_hurtbox/resources/action.gd" id="7_mbx8j"]
+
+[sub_resource type="Resource" id="Resource_8xqyf"]
+script = ExtResource("7_mbx8j")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_xjn5d"]
+script = ExtResource("7_mbx8j")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_mbx8j"]
+script = ExtResource("7_mbx8j")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_frh5a"]
+script = ExtResource("7_mbx8j")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_syph2"]
+script = ExtResource("7_mbx8j")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xjn5d"]
+size = Vector2(20, 34)
 
 [node name="LevelOne" type="Node2D"]
 metadata/_edit_horizontal_guides_ = [-28.0, 204.0, 160.0]
@@ -64,3 +99,14 @@ limit_top = -28
 limit_bottom = 160
 position_smoothing_enabled = true
 drag_vertical_enabled = true
+
+[node name="BasicHitBox2D" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 4
+script = ExtResource("6_xjn5d")
+actions = Array[ExtResource("7_mbx8j")]([SubResource("Resource_8xqyf"), SubResource("Resource_xjn5d"), SubResource("Resource_mbx8j"), SubResource("Resource_frh5a"), SubResource("Resource_syph2")])
+metadata/_custom_type_script = "uid://chrsg1fc53qs3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicHitBox2D"]
+position = Vector2(127, 113)
+shape = SubResource("RectangleShape2D_xjn5d")

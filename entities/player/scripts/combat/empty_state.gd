@@ -1,6 +1,6 @@
 extends CombatState
 
-@export var block_threshold = 0.2
+@export var block_threshold = 0.1
 @export var holding_sword_state: StateMachineState = null
 @export var blocking_state: StateMachineState = null
 @export var parrying_state: StateMachineState = null
@@ -10,7 +10,7 @@ var hold_time = 0.0
 var is_parry_candidate = false
 
 func _enter_state():
-	print("empty")
+	character.speed_multiplier = 1.0
 	hold_time = 0.0
 	is_parry_candidate = false
 	character.is_holding_sword = false
