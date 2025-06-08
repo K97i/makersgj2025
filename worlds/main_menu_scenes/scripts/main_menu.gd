@@ -4,7 +4,6 @@ var button_type = null
 func _ready():
 	$Fade_transition.show()
 	$Fade_transition/AnimationPlayer.play("fade_out")
-	$"Main Theme".play()
 
 	
 func _on_start_pressed() -> void:

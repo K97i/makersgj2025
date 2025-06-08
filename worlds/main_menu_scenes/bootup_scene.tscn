@@ -11,6 +11,7 @@ script = ExtResource("1_53o38")
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1259.0
 offset_bottom = 767.0
+metadata/_edit_use_anchors_ = true
 
 [node name="Pixil-frame-0" type="Sprite2D" parent="."]
 position = Vector2(320, 188.48)
@@ -27,6 +28,7 @@ theme_override_fonts/font = ExtResource("3_q5wou")
 theme_override_font_sizes/font_size = 21
 text = "a MAKERS production"
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="next_scene_start" type="Timer" parent="."]
 wait_time = 6.0
@@ -35,5 +37,6 @@ wait_time = 6.0
 visible = false
 offset_top = 2.0
 offset_bottom = 402.0
+metadata/_edit_use_anchors_ = true
 
 [connection signal="timeout" from="next_scene_start" to="." method="_on_next_scene_start_timeout"]
