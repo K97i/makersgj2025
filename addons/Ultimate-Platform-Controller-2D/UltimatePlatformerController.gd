@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 class_name PlatformerController2D
 
 @export var README: String = "IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' in the project settings input map. Usage tips. 1. Hover over each toggle and variable to read what it does and to make sure nothing bugs. 2. Animations are very primitive. To make full use of your custom art, you may want to slightly change the code for the animations"
@@ -83,10 +82,14 @@ var gravity_pause_timer_node: Timer
 var dashing_state_timer_node: Timer
 
 var was_on_floor: bool = false
+var collision_positions: Array
+
+var is_holding_sword: bool = false
 
 func _ready():
-	$LegsAnimatedSprite2D.play()
-	$TorsoAnimatedSprite2D.play()
+	var collision_shapes = get_tree().get_nodes_in_group("collision_shapes")
+	for i in collision_shapes:
+		collision_positions.append(i.position.x)
 
 	#anim = PlayerSprite
 	_updateData()
@@ -114,7 +117,7 @@ func _updateData():
 	jumpCount = jumps # Initialize jump count
 	dashCount = dashes # Initialize dash count
 		
-	if jumps > 1: # Multi-jumps disable coyote time and jump buffering
+	if jumps > 1: # Multi-jumps disable coclass_name Enemy yote time and jump buffering
 		jumpBuffering = 0
 		coyoteTime = 0
 	
@@ -148,10 +151,11 @@ func _process(_delta):
 		#if idle and current_animation != "idle": PlayerSprite.play("idle")
 
 	# Flip sprite based on movement direction
-	#if velocity.x > 0.1:
-		#PlayerSprite.scale.x = animScaleLock.x
-	#elif velocity.x < -0.1:
-		#PlayerSprite.scale.x = -animScaleLock.x
+	var collision_shapes = get_tree().get_nodes_in_group("collision_shapes")
+	if velocity.x != 0:
+		var direction = sign(velocity.x)
+		for i in range(collision_positions.size()):
+			collision_shapes[i].position.x = collision_positions[i] * direction
 
 func _physics_process(delta: float):
 	# Input Detection
@@ -338,3 +342,7 @@ func _wallJump():
 	if inputPauseAfterWallJump > 0:
 		movementInputMonitoring = Vector2.ZERO
 		_start_timer("input_pause", inputPauseAfterWallJump, "_on_input_pause_timer_timeout")
+
+
+func _on_torso_animation_tree_animation_started(anim_name: StringName) -> void:
+	print("animation started: ", anim_name)

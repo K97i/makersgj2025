@@ -1,7 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=41 format=3 uid="uid://b36sdv1sv4v58"]
+[gd_resource type="SpriteFrames" load_steps=49 format=3 uid="uid://b36sdv1sv4v58"]
 
-[ext_resource type="Texture2D" uid="uid://dfdvn7j8eghrk" path="res://entities/player/torso-empty.png" id="1_reja7"]
-[ext_resource type="Texture2D" uid="uid://rocp5uxqxfq8" path="res://entities/player/torso-sword.png" id="2_d7b7g"]
+[ext_resource type="Texture2D" uid="uid://dfdvn7j8eghrk" path="res://entities/player/assets/torso-empty.png" id="1_reja7"]
+[ext_resource type="Texture2D" uid="uid://rocp5uxqxfq8" path="res://entities/player/assets/torso-sword.png" id="2_d7b7g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4q808"]
 atlas = ExtResource("1_reja7")
@@ -155,6 +155,38 @@ region = Rect2(128, 28, 32, 28)
 atlas = ExtResource("2_d7b7g")
 region = Rect2(160, 28, 32, 28)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cvyx"]
+atlas = ExtResource("2_d7b7g")
+region = Rect2(32, 84, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8maqd"]
+atlas = ExtResource("2_d7b7g")
+region = Rect2(64, 84, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yxfu5"]
+atlas = ExtResource("2_d7b7g")
+region = Rect2(96, 84, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_blocb"]
+atlas = ExtResource("2_d7b7g")
+region = Rect2(128, 84, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0ioi"]
+atlas = ExtResource("2_d7b7g")
+region = Rect2(160, 84, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lj3w2"]
+atlas = ExtResource("2_d7b7g")
+region = Rect2(0, 112, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqd3o"]
+atlas = ExtResource("2_d7b7g")
+region = Rect2(32, 112, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tn8b7"]
+atlas = ExtResource("2_d7b7g")
+region = Rect2(64, 112, 32, 28)
+
 [resource]
 animations = [{
 "frames": [{
@@ -172,7 +204,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"fall",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -206,7 +238,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -237,7 +269,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"jump",
-"speed": 5.0
+"speed": 6.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -280,7 +312,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -310,4 +342,38 @@ animations = [{
 "loop": true,
 "name": &"run_sword",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cvyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8maqd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yxfu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_blocb")
+}],
+"loop": true,
+"name": &"swing_air",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0ioi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lj3w2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqd3o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tn8b7")
+}],
+"loop": false,
+"name": &"swing_normal",
+"speed": 10.0
 }]

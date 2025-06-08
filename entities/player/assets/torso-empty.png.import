@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://hagrfr0n2ogx"
-path="res://.godot/imported/legs.png-c0b393226e155b74cea7858d8ac88c4b.ctex"
+uid="uid://dfdvn7j8eghrk"
+path="res://.godot/imported/torso-empty.png-eff8d7f6ffde49c1309bb91b4043bc6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/legs.png"
-dest_files=["res://.godot/imported/legs.png-c0b393226e155b74cea7858d8ac88c4b.ctex"]
+source_file="res://entities/player/assets/torso-empty.png"
+dest_files=["res://.godot/imported/torso-empty.png-eff8d7f6ffde49c1309bb91b4043bc6d.ctex"]
 
 [params]
 

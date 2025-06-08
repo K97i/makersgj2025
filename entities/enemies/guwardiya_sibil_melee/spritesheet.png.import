@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfdvn7j8eghrk"
-path="res://.godot/imported/torso-empty.png-58f39b1374458c99fa39d22c753f8e44.ctex"
+uid="uid://cecunxdspc4xw"
+path="res://.godot/imported/spritesheet.png-f0a72c35ed74814426d848bf5ae65d78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/player/torso-empty.png"
-dest_files=["res://.godot/imported/torso-empty.png-58f39b1374458c99fa39d22c753f8e44.ctex"]
+source_file="res://entities/enemies/guwardiya_sibil_melee/spritesheet.png"
+dest_files=["res://.godot/imported/spritesheet.png-f0a72c35ed74814426d848bf5ae65d78.ctex"]
 
 [params]
 
