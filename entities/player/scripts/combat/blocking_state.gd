@@ -6,6 +6,7 @@ extends CombatState
 
 func _enter_state():
 	character.speed_multiplier = 0.5
+	character.is_blocking = true
 	print("blocking")
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -20,3 +21,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("sword_swing"):
 		character.is_holding_sword = true
 		get_state_machine().current_state = swinging_sword_state
+
+func _exit_state():
+	character.is_blocking = false

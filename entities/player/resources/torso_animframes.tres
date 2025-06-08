@@ -1,7 +1,24 @@
-[gd_resource type="SpriteFrames" load_steps=49 format=3 uid="uid://b36sdv1sv4v58"]
+[gd_resource type="SpriteFrames" load_steps=57 format=3 uid="uid://b36sdv1sv4v58"]
 
+[ext_resource type="Texture2D" uid="uid://dt8y6cfkqm35b" path="res://entities/player/assets/torso-shield.png" id="1_8maqd"]
 [ext_resource type="Texture2D" uid="uid://dfdvn7j8eghrk" path="res://entities/player/assets/torso-empty.png" id="1_reja7"]
 [ext_resource type="Texture2D" uid="uid://rocp5uxqxfq8" path="res://entities/player/assets/torso-sword.png" id="2_d7b7g"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wgv4v"]
+atlas = ExtResource("1_8maqd")
+region = Rect2(160, 84, 40, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2eqae"]
+atlas = ExtResource("1_8maqd")
+region = Rect2(0, 112, 40, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukpbs"]
+atlas = ExtResource("1_8maqd")
+region = Rect2(40, 112, 40, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_472pi"]
+atlas = ExtResource("1_8maqd")
+region = Rect2(80, 112, 40, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33mdv"]
 atlas = ExtResource("1_reja7")
@@ -90,6 +107,18 @@ region = Rect2(40, 56, 40, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_wbedh"]
 atlas = ExtResource("2_d7b7g")
 region = Rect2(80, 56, 40, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dkgmn"]
+atlas = ExtResource("1_8maqd")
+region = Rect2(80, 112, 40, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0fd62"]
+atlas = ExtResource("1_8maqd")
+region = Rect2(0, 112, 40, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_130sk"]
+atlas = ExtResource("1_8maqd")
+region = Rect2(160, 84, 40, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqg0f"]
 atlas = ExtResource("1_reja7")
@@ -191,6 +220,23 @@ region = Rect2(120, 112, 40, 28)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_wgv4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2eqae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukpbs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_472pi")
+}],
+"loop": false,
+"name": &"block",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_33mdv")
 }, {
 "duration": 1.0,
@@ -285,10 +331,19 @@ animations = [{
 "name": &"jump_sword",
 "speed": 5.0
 }, {
-"frames": [],
-"loop": true,
-"name": &"new_animation",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dkgmn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0fd62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_130sk")
+}],
+"loop": false,
+"name": &"parry",
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
