@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://3263ftyvdq8s"]
+[gd_scene load_steps=28 format=3 uid="uid://3263ftyvdq8s"]
 
 [ext_resource type="Script" uid="uid://d2ilkerwsxlg1" path="res://entities/enemies/guwardiya_sibil_melee/guwardiya_sibil_melee.gd" id="1_xt334"]
 [ext_resource type="Script" uid="uid://dr8bvnfebp76" path="res://addons/health_hitbox_hurtbox/health/health.gd" id="2_3stuk"]
@@ -125,6 +125,12 @@ affect = 1
 type = 2
 amount = 1
 
+[sub_resource type="Resource" id="Resource_fknke"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 1
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4hilg"]
 size = Vector2(9, 22)
 
@@ -164,7 +170,7 @@ shape = SubResource("RectangleShape2D_ni7kg")
 collision_layer = 64
 collision_mask = 4
 script = ExtResource("6_vr6f7")
-actions = Array[ExtResource("7_fknke")]([SubResource("Resource_ni7kg"), SubResource("Resource_iullt"), SubResource("Resource_1hig5"), SubResource("Resource_ogatv"), SubResource("Resource_ecuhe"), SubResource("Resource_vr6f7")])
+actions = Array[ExtResource("7_fknke")]([SubResource("Resource_ni7kg"), SubResource("Resource_iullt"), SubResource("Resource_1hig5"), SubResource("Resource_ogatv"), SubResource("Resource_ecuhe"), SubResource("Resource_vr6f7"), SubResource("Resource_fknke")])
 metadata/_custom_type_script = "uid://chrsg1fc53qs3"
 
 [node name="HurtboxShape2D" type="CollisionShape2D" parent="BasicHitBox2D"]

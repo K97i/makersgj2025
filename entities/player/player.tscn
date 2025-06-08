@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://bsw13y2k72xns"]
+[gd_scene load_steps=114 format=3 uid="uid://bsw13y2k72xns"]
 
 [ext_resource type="Script" uid="uid://d21nwq52lhu8a" path="res://addons/Ultimate-Platform-Controller-2D/UltimatePlatformerController.gd" id="1_2qma8"]
 [ext_resource type="SpriteFrames" uid="uid://caccgn0okcesg" path="res://entities/player/resources/legs_animframes.tres" id="2_j3ovn"]
@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://coi18cdfax2fx" path="res://entities/player/scripts/combat/swinging_sword.gd" id="17_mtric"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a38lo"]
-size = Vector2(14, 25)
+size = Vector2(14, 23)
 
 [sub_resource type="Resource" id="Resource_ghoj8"]
 script = ExtResource("5_yqrof")
@@ -31,7 +31,7 @@ multiplier = 1.0
 convert_affect = 0
 convert_type = 0
 
-[sub_resource type="Resource" id="Resource_t1t22"]
+[sub_resource type="Resource" id="Resource_a2brg"]
 script = ExtResource("5_yqrof")
 incrementer = 0
 multiplier = 1.0
@@ -131,8 +131,242 @@ affect = 1
 type = 2
 amount = 1
 
+[sub_resource type="Resource" id="Resource_0eo6o"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_ttr27"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_13wue"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_wy7bt"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_geky7"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_qwspa"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_r633c"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_pacje"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_2h0qb"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_mmk7k"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_g3pa7"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_7otdo"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_c112w"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_u37te"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_ssgi7"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_rtlkk"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_t1t22"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_arp52"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_jjk8f"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_cnswy"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_q5bfg"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_p22ii"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_7rgwd"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_24so6"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_sk710"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_kbbq5"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_akixf"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_3y563"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_sgfia"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_sv458"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_pth52"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_4iu2e"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_0q7bw"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_qb5t2"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_qsjf6"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_k3n4f"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_gmffv"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_rqau1"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
+[sub_resource type="Resource" id="Resource_gv6fn"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 1
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtric"]
-size = Vector2(13, 28)
+size = Vector2(13, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eyb6c"]
 size = Vector2(19, 28)
@@ -166,7 +400,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("SwordHitBox2D/CollisionShape2D:disabled")
+tracks/2/path = NodePath("SwordHitBox2D/SwordShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -877,14 +1111,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SwordHitBox2D/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SwordHitBox2D/SwordShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_ghoj8"]
@@ -932,14 +1166,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SwordHitBox2D/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SwordHitBox2D/SwordShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_221hk"]
@@ -987,14 +1221,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SwordHitBox2D/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SwordHitBox2D/SwordShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_eyb6c"]
@@ -1042,14 +1276,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("SwordHitBox2D/CollisionShape2D:disabled")
+tracks/3/path = NodePath("SwordHitBox2D/SwordShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.1, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true]
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_mtric"]
@@ -1505,8 +1739,9 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 disable_mode = 1
+collision_mask = 524289
 script = ExtResource("1_2qma8")
-maxSpeed = 180.0
+maxSpeed = 100.0
 timeToReachMaxSpeed = 0.1
 timeToReachZeroSpeed = 0.3
 jumpHeight = 52.0
@@ -1521,17 +1756,16 @@ jump = true
 idle = true
 
 [node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -2)
 sprite_frames = ExtResource("2_j3ovn")
 animation = &"idle"
+frame_progress = 0.111204
 
 [node name="TorsoAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -4)
 sprite_frames = ExtResource("3_afbqv")
 animation = &"swing_normal"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["collision_shapes"]]
-position = Vector2(-3, -0.5)
+position = Vector2(-3, 2.5)
 shape = SubResource("RectangleShape2D_a38lo")
 
 [node name="Health" type="Node" parent="."]
@@ -1547,7 +1781,7 @@ script = ExtResource("4_gx6sm")
 health = NodePath("../Health")
 modifiers = Dictionary[int, ExtResource("5_yqrof")]({
 1: SubResource("Resource_ghoj8"),
-2: SubResource("Resource_t1t22")
+2: SubResource("Resource_a2brg")
 })
 metadata/_custom_type_script = "uid://dtfoilkdcfvgv"
 
@@ -1557,11 +1791,11 @@ shape = SubResource("RectangleShape2D_we0b7")
 
 [node name="SwordHitBox2D" type="Area2D" parent="."]
 script = ExtResource("7_3wlsy")
-actions = Array[ExtResource("8_b2kln")]([SubResource("Resource_we0b7"), SubResource("Resource_mtric"), SubResource("Resource_eyb6c"), SubResource("Resource_221hk"), SubResource("Resource_50fht"), SubResource("Resource_wuv6x"), SubResource("Resource_qpopc"), SubResource("Resource_wq0jh"), SubResource("Resource_gt4e4"), SubResource("Resource_24ehl"), SubResource("Resource_bwdx1"), SubResource("Resource_vewsg"), SubResource("Resource_2soq1"), SubResource("Resource_8q4fm"), SubResource("Resource_np63p")])
+actions = Array[ExtResource("8_b2kln")]([SubResource("Resource_we0b7"), SubResource("Resource_mtric"), SubResource("Resource_eyb6c"), SubResource("Resource_221hk"), SubResource("Resource_50fht"), SubResource("Resource_wuv6x"), SubResource("Resource_qpopc"), SubResource("Resource_wq0jh"), SubResource("Resource_gt4e4"), SubResource("Resource_24ehl"), SubResource("Resource_bwdx1"), SubResource("Resource_vewsg"), SubResource("Resource_2soq1"), SubResource("Resource_8q4fm"), SubResource("Resource_np63p"), SubResource("Resource_0eo6o"), SubResource("Resource_ttr27"), SubResource("Resource_13wue"), SubResource("Resource_wy7bt"), SubResource("Resource_geky7"), SubResource("Resource_qwspa"), SubResource("Resource_r633c"), SubResource("Resource_pacje"), SubResource("Resource_2h0qb"), SubResource("Resource_mmk7k"), SubResource("Resource_g3pa7"), SubResource("Resource_7otdo"), SubResource("Resource_c112w"), SubResource("Resource_u37te"), SubResource("Resource_ssgi7"), SubResource("Resource_rtlkk"), SubResource("Resource_t1t22"), SubResource("Resource_arp52"), SubResource("Resource_jjk8f"), SubResource("Resource_cnswy"), SubResource("Resource_q5bfg"), SubResource("Resource_p22ii"), SubResource("Resource_7rgwd"), SubResource("Resource_24so6"), SubResource("Resource_sk710"), SubResource("Resource_kbbq5"), SubResource("Resource_akixf"), SubResource("Resource_3y563"), SubResource("Resource_sgfia"), SubResource("Resource_sv458"), SubResource("Resource_pth52"), SubResource("Resource_4iu2e"), SubResource("Resource_0q7bw"), SubResource("Resource_qb5t2"), SubResource("Resource_qsjf6"), SubResource("Resource_k3n4f"), SubResource("Resource_gmffv"), SubResource("Resource_rqau1"), SubResource("Resource_gv6fn")])
 metadata/_custom_type_script = "uid://chrsg1fc53qs3"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitBox2D" groups=["collision_shapes"]]
-position = Vector2(10.5, -2)
+[node name="SwordShape2D" type="CollisionShape2D" parent="SwordHitBox2D" groups=["collision_shapes"]]
+position = Vector2(10.5, -1)
 shape = SubResource("RectangleShape2D_mtric")
 disabled = true
 debug_color = Color(0.805372, 0, 0.115542, 0.42)
