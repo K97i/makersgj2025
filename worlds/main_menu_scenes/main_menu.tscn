@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://cglu5u5gvnhi7"]
+
+[ext_resource type="Script" uid="uid://dgl4el3vha4hl" path="res://worlds/main_menu_scenes/scripts/main_menu.gd" id="1_oa1go"]
+[ext_resource type="Texture2D" uid="uid://c58kddlfh6l06" path="res://assets/ui/FTTMainMenu1.png" id="2_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://dyo22qd6e0n3w" path="res://assets/ui/Playbuttonunhighlighted.png" id="3_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://dxlqd34w5ojqp" path="res://assets/ui/Playbuttonhighlighted.png" id="4_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://bk6cxuuiq2lkf" path="res://assets/ui/QUITunhighlighted.png" id="5_lgwnu"]
+[ext_resource type="Texture2D" uid="uid://krek0nkoy7ql" path="res://assets/ui/QUIThighlighted.png" id="6_flqon"]
+[ext_resource type="PackedScene" uid="uid://4vfxnmk1hxlp" path="res://worlds/main_menu_scenes/fade_transition.tscn" id="7_rcqid"]
+[ext_resource type="AudioStream" uid="uid://dmp0rhepxgekb" path="res://assets/sfx/stuck - main theme.ogg" id="8_47ddn"]
+[ext_resource type="Texture2D" uid="uid://cerb7iwavevti" path="res://assets/ui/Flipping Through Time - Logo.png" id="9_47ddn"]
+
+[node name="Main Menu" type="Node2D"]
+script = ExtResource("1_oa1go")
+
+[node name="FttMainMenu1" type="Sprite2D" parent="."]
+position = Vector2(190, 200.25)
+scale = Vector2(0.230867, 0.24)
+texture = ExtResource("2_tbmy8")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Start" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 292.0
+offset_right = 471.0
+offset_bottom = 921.0
+scale = Vector2(0.275, 0.275)
+texture_normal = ExtResource("3_jk1qb")
+texture_hover = ExtResource("4_5dd4i")
+
+[node name="Quit" type="TextureButton" parent="Control"]
+layout_mode = 0
+offset_left = 63.0
+offset_top = 323.0
+offset_right = 470.0
+offset_bottom = 952.0
+scale = Vector2(0.275, 0.275)
+texture_normal = ExtResource("5_lgwnu")
+texture_pressed = ExtResource("6_flqon")
+texture_hover = ExtResource("6_flqon")
+
+[node name="Fade_transition" parent="." instance=ExtResource("7_rcqid")]
+mouse_filter = 2
+
+[node name="Fade_timer" type="Timer" parent="Fade_transition"]
+wait_time = 0.193
+
+[node name="Main Theme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_47ddn")
+autoplay = true
+parameters/looping = true
+
+[node name="FlippingThroughTime-Logo" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(199.053, 115.234)
+scale = Vector2(0.0982465, 0.0982465)
+texture = ExtResource("9_47ddn")
+
+[connection signal="pressed" from="Control/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Control/Quit" to="." method="_on_quit_pressed"]
+[connection signal="timeout" from="Fade_transition/Fade_timer" to="." method="_on_fade_timer_timeout"]

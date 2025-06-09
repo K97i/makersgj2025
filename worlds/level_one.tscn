@@ -78,11 +78,20 @@ position = Vector2(28, 118)
 [node name="Player" parent="." groups=["player"] instance=ExtResource("5_hrpaa")]
 position = Vector2(79, 118)
 
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Player"]
+position = Vector2(-52, 177)
+scale = Vector2(92.7669, 13.6708)
+stream = ExtResource("8_mbx8j")
+autoplay = true
+max_distance = 522.0
+max_polyphony = 20
+
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(99, 119)
-zoom = Vector2(3.8, 3.8)
+zoom = Vector2(1.875, 1.875)
 limit_left = 0
-limit_top = -28
+limit_top = -40
 limit_bottom = 160
 position_smoothing_enabled = true
+position_smoothing_speed = 4.0
 drag_vertical_enabled = true
