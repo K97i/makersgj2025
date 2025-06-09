@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6obp2f01xeh2"
-path="res://.godot/imported/spritesheet.png-bce13dd3dd0cb90b1421d0e39dfe07e7.ctex"
+uid="uid://b71c45w0hxtc8"
+path="res://.godot/imported/crosshair.png-924c294ab522252e3890933b2433f663.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/guwardiya_sibil_ranged/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-bce13dd3dd0cb90b1421d0e39dfe07e7.ctex"]
+source_file="res://entities/enemies/japanese_infantry/crosshair.png"
+dest_files=["res://.godot/imported/crosshair.png-924c294ab522252e3890933b2433f663.ctex"]
 
 [params]
 

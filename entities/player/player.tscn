@@ -1,4 +1,4 @@
-[gd_scene load_steps=169 format=3 uid="uid://bsw13y2k72xns"]
+[gd_scene load_steps=180 format=3 uid="uid://bsw13y2k72xns"]
 
 [ext_resource type="Script" uid="uid://d21nwq52lhu8a" path="res://addons/Ultimate-Platform-Controller-2D/UltimatePlatformerController.gd" id="1_2qma8"]
 [ext_resource type="SpriteFrames" uid="uid://caccgn0okcesg" path="res://entities/player/resources/legs_animframes.tres" id="2_j3ovn"]
@@ -650,17 +650,83 @@ affect = 1
 type = 2
 amount = 2
 
+[sub_resource type="Resource" id="Resource_cnxiv"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_i4cyf"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_tg1bq"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_qq2qf"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_cmnuq"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_6qk2j"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_fgfpc"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_quha1"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_i2mml"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_rw0f3"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_5xt2g"]
+script = ExtResource("8_b2kln")
+affect = 1
+type = 2
+amount = 2
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtric"]
 size = Vector2(16, 30)
 
-[sub_resource type="Resource" id="Resource_cnxiv"]
+[sub_resource type="Resource" id="Resource_grcmi"]
 script = ExtResource("5_yqrof")
 incrementer = 0
 multiplier = 1.0
 convert_affect = 0
 convert_type = 0
 
-[sub_resource type="Resource" id="Resource_i4cyf"]
+[sub_resource type="Resource" id="Resource_oyx2w"]
 script = ExtResource("5_yqrof")
 incrementer = 0
 multiplier = 1.0
@@ -2284,7 +2350,7 @@ collision_layer = 2
 collision_mask = 128
 script = ExtResource("7_3wlsy")
 amount = 2
-actions = Array[ExtResource("8_b2kln")]([SubResource("Resource_we0b7"), SubResource("Resource_mtric"), SubResource("Resource_eyb6c"), SubResource("Resource_221hk"), SubResource("Resource_50fht"), SubResource("Resource_wuv6x"), SubResource("Resource_qpopc"), SubResource("Resource_wq0jh"), SubResource("Resource_gt4e4"), SubResource("Resource_24ehl"), SubResource("Resource_bwdx1"), SubResource("Resource_vewsg"), SubResource("Resource_2soq1"), SubResource("Resource_8q4fm"), SubResource("Resource_np63p"), SubResource("Resource_0eo6o"), SubResource("Resource_ttr27"), SubResource("Resource_13wue"), SubResource("Resource_wy7bt"), SubResource("Resource_geky7"), SubResource("Resource_qwspa"), SubResource("Resource_r633c"), SubResource("Resource_pacje"), SubResource("Resource_2h0qb"), SubResource("Resource_mmk7k"), SubResource("Resource_g3pa7"), SubResource("Resource_7otdo"), SubResource("Resource_c112w"), SubResource("Resource_u37te"), SubResource("Resource_ssgi7"), SubResource("Resource_rtlkk"), SubResource("Resource_t1t22"), SubResource("Resource_arp52"), SubResource("Resource_jjk8f"), SubResource("Resource_cnswy"), SubResource("Resource_q5bfg"), SubResource("Resource_p22ii"), SubResource("Resource_7rgwd"), SubResource("Resource_24so6"), SubResource("Resource_sk710"), SubResource("Resource_kbbq5"), SubResource("Resource_akixf"), SubResource("Resource_3y563"), SubResource("Resource_sgfia"), SubResource("Resource_sv458"), SubResource("Resource_pth52"), SubResource("Resource_4iu2e"), SubResource("Resource_0q7bw"), SubResource("Resource_qb5t2"), SubResource("Resource_qsjf6"), SubResource("Resource_k3n4f"), SubResource("Resource_gmffv"), SubResource("Resource_rqau1"), SubResource("Resource_gv6fn"), SubResource("Resource_2vqvu"), SubResource("Resource_yb4xh"), SubResource("Resource_ix1gt"), SubResource("Resource_sym6v"), SubResource("Resource_dnai7"), SubResource("Resource_u8til"), SubResource("Resource_qydng"), SubResource("Resource_1bn7s"), SubResource("Resource_aerxn"), SubResource("Resource_qd1uy"), SubResource("Resource_fs2ga"), SubResource("Resource_kvro1"), SubResource("Resource_cnghg"), SubResource("Resource_8xphj"), SubResource("Resource_6v113"), SubResource("Resource_6t5pu"), SubResource("Resource_81y5a"), SubResource("Resource_bwbc3"), SubResource("Resource_b21vv"), SubResource("Resource_vwpi8"), SubResource("Resource_nf7d4"), SubResource("Resource_xgwqa"), SubResource("Resource_6tg0t"), SubResource("Resource_vq0gh"), SubResource("Resource_kpbfg"), SubResource("Resource_52mt1"), SubResource("Resource_1wqwd"), SubResource("Resource_lolo7"), SubResource("Resource_btle8"), SubResource("Resource_fp3no"), SubResource("Resource_v8xka"), SubResource("Resource_mh54n"), SubResource("Resource_ulahl"), SubResource("Resource_qb5o2"), SubResource("Resource_x41hg"), SubResource("Resource_041m2"), SubResource("Resource_eiyfn"), SubResource("Resource_ghoj8"), SubResource("Resource_a2brg"), SubResource("Resource_dks87"), SubResource("Resource_vmmfi"), SubResource("Resource_cskxj"), SubResource("Resource_o466o"), SubResource("Resource_n41sh"), SubResource("Resource_rockh"), SubResource("Resource_agi6m"), SubResource("Resource_t4h4b"), SubResource("Resource_crtd3"), SubResource("Resource_gkr8o"), SubResource("Resource_mmkr7")])
+actions = Array[ExtResource("8_b2kln")]([SubResource("Resource_we0b7"), SubResource("Resource_mtric"), SubResource("Resource_eyb6c"), SubResource("Resource_221hk"), SubResource("Resource_50fht"), SubResource("Resource_wuv6x"), SubResource("Resource_qpopc"), SubResource("Resource_wq0jh"), SubResource("Resource_gt4e4"), SubResource("Resource_24ehl"), SubResource("Resource_bwdx1"), SubResource("Resource_vewsg"), SubResource("Resource_2soq1"), SubResource("Resource_8q4fm"), SubResource("Resource_np63p"), SubResource("Resource_0eo6o"), SubResource("Resource_ttr27"), SubResource("Resource_13wue"), SubResource("Resource_wy7bt"), SubResource("Resource_geky7"), SubResource("Resource_qwspa"), SubResource("Resource_r633c"), SubResource("Resource_pacje"), SubResource("Resource_2h0qb"), SubResource("Resource_mmk7k"), SubResource("Resource_g3pa7"), SubResource("Resource_7otdo"), SubResource("Resource_c112w"), SubResource("Resource_u37te"), SubResource("Resource_ssgi7"), SubResource("Resource_rtlkk"), SubResource("Resource_t1t22"), SubResource("Resource_arp52"), SubResource("Resource_jjk8f"), SubResource("Resource_cnswy"), SubResource("Resource_q5bfg"), SubResource("Resource_p22ii"), SubResource("Resource_7rgwd"), SubResource("Resource_24so6"), SubResource("Resource_sk710"), SubResource("Resource_kbbq5"), SubResource("Resource_akixf"), SubResource("Resource_3y563"), SubResource("Resource_sgfia"), SubResource("Resource_sv458"), SubResource("Resource_pth52"), SubResource("Resource_4iu2e"), SubResource("Resource_0q7bw"), SubResource("Resource_qb5t2"), SubResource("Resource_qsjf6"), SubResource("Resource_k3n4f"), SubResource("Resource_gmffv"), SubResource("Resource_rqau1"), SubResource("Resource_gv6fn"), SubResource("Resource_2vqvu"), SubResource("Resource_yb4xh"), SubResource("Resource_ix1gt"), SubResource("Resource_sym6v"), SubResource("Resource_dnai7"), SubResource("Resource_u8til"), SubResource("Resource_qydng"), SubResource("Resource_1bn7s"), SubResource("Resource_aerxn"), SubResource("Resource_qd1uy"), SubResource("Resource_fs2ga"), SubResource("Resource_kvro1"), SubResource("Resource_cnghg"), SubResource("Resource_8xphj"), SubResource("Resource_6v113"), SubResource("Resource_6t5pu"), SubResource("Resource_81y5a"), SubResource("Resource_bwbc3"), SubResource("Resource_b21vv"), SubResource("Resource_vwpi8"), SubResource("Resource_nf7d4"), SubResource("Resource_xgwqa"), SubResource("Resource_6tg0t"), SubResource("Resource_vq0gh"), SubResource("Resource_kpbfg"), SubResource("Resource_52mt1"), SubResource("Resource_1wqwd"), SubResource("Resource_lolo7"), SubResource("Resource_btle8"), SubResource("Resource_fp3no"), SubResource("Resource_v8xka"), SubResource("Resource_mh54n"), SubResource("Resource_ulahl"), SubResource("Resource_qb5o2"), SubResource("Resource_x41hg"), SubResource("Resource_041m2"), SubResource("Resource_eiyfn"), SubResource("Resource_ghoj8"), SubResource("Resource_a2brg"), SubResource("Resource_dks87"), SubResource("Resource_vmmfi"), SubResource("Resource_cskxj"), SubResource("Resource_o466o"), SubResource("Resource_n41sh"), SubResource("Resource_rockh"), SubResource("Resource_agi6m"), SubResource("Resource_t4h4b"), SubResource("Resource_crtd3"), SubResource("Resource_gkr8o"), SubResource("Resource_mmkr7"), SubResource("Resource_cnxiv"), SubResource("Resource_i4cyf"), SubResource("Resource_tg1bq"), SubResource("Resource_qq2qf"), SubResource("Resource_cmnuq"), SubResource("Resource_6qk2j"), SubResource("Resource_fgfpc"), SubResource("Resource_quha1"), SubResource("Resource_i2mml"), SubResource("Resource_rw0f3"), SubResource("Resource_5xt2g")])
 metadata/_custom_type_script = "uid://chrsg1fc53qs3"
 
 [node name="SwordShape2D" type="CollisionShape2D" parent="SwordHitBox2D" groups=["collision_shapes"]]
@@ -2300,8 +2366,8 @@ script = ExtResource("9_221hk")
 parry_active_duration = 0.0
 health = NodePath("../Health")
 modifiers = Dictionary[int, ExtResource("5_yqrof")]({
-1: SubResource("Resource_cnxiv"),
-2: SubResource("Resource_i4cyf")
+1: SubResource("Resource_grcmi"),
+2: SubResource("Resource_oyx2w")
 })
 metadata/_custom_type_script = "uid://q5c20xf7cu30"
 
