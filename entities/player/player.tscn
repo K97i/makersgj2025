@@ -1,4 +1,4 @@
-[gd_scene load_steps=187 format=3 uid="uid://bsw13y2k72xns"]
+[gd_scene load_steps=189 format=3 uid="uid://bsw13y2k72xns"]
 
 [ext_resource type="Script" uid="uid://d21nwq52lhu8a" path="res://addons/Ultimate-Platform-Controller-2D/UltimatePlatformerController.gd" id="1_2qma8"]
 [ext_resource type="SpriteFrames" uid="uid://caccgn0okcesg" path="res://entities/player/resources/legs_animframes.tres" id="2_j3ovn"]
@@ -22,6 +22,12 @@
 [ext_resource type="Script" uid="uid://coi18cdfax2fx" path="res://entities/player/scripts/combat/swinging_sword.gd" id="17_mtric"]
 [ext_resource type="Script" uid="uid://dfn5asf2eygnw" path="res://entities/player/scripts/combat/blocking_state.gd" id="18_eyb6c"]
 [ext_resource type="Script" uid="uid://bbdnfps66a06p" path="res://entities/player/scripts/combat/parrying_state.gd" id="20_ghoj8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_221hk"]
+bg_color = Color(0.663477, 0.122719, 0.184513, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghoj8"]
+bg_color = Color(0.530488, 0.650431, 0.331188, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a38lo"]
 size = Vector2(14, 23)
@@ -2368,6 +2374,17 @@ run = true
 jump = true
 idle = true
 
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -14.0
+offset_top = -17.0
+offset_right = 13.0
+offset_bottom = -13.0
+theme_override_styles/background = SubResource("StyleBoxFlat_221hk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ghoj8")
+max_value = 1.0
+value = 1.0
+show_percentage = false
+
 [node name="LegsAnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_j3ovn")
 animation = &"idle"
@@ -2513,6 +2530,7 @@ tree_root = ExtResource("13_yqrof")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../LegsAnimationPlayer")
 
+[connection signal="damaged" from="Health" to="." method="_on_health_damaged"]
 [connection signal="parry_successful" from="ParryHurtBox2D" to="." method="_on_parry_hit_box_2d_parry_successful"]
 [connection signal="state_entered" from="CombatStateMachine/SwingingSword" to="TorsoAnimationTree" method="set" binds= ["parameters/conditions/attacked", true]]
 [connection signal="state_exited" from="CombatStateMachine/SwingingSword" to="TorsoAnimationTree" method="set" binds= ["parameters/conditions/attacked", false]]

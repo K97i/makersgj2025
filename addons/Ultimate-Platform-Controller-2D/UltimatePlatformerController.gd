@@ -372,3 +372,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("world_switch"):
 		world_switch_requested.emit()
 		get_viewport().set_input_as_handled()
+
+
+func _on_health_damaged(entity: Node, type: HealthActionType.Enum, amount: int, incrementer: int, multiplier: float, applied: int) -> void:
+	$ProgressBar.value = $Health.percent()
