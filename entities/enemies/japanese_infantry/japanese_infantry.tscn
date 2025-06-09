@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://3263ftyvdq8s"]
+[gd_scene load_steps=57 format=3 uid="uid://3263ftyvdq8s"]
 
 [ext_resource type="Script" uid="uid://qs8p8f18by8x" path="res://entities/enemies/japanese_infantry/japanese_infantry.gd" id="1_3stuk"]
 [ext_resource type="Script" uid="uid://dr8bvnfebp76" path="res://addons/health_hitbox_hurtbox/health/health.gd" id="2_3stuk"]
@@ -214,14 +214,14 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Resource" id="Resource_k2eb2"]
+[sub_resource type="Resource" id="Resource_qx7mg"]
 script = ExtResource("5_ecuhe")
 incrementer = 0
 multiplier = 1.0
 convert_affect = 0
 convert_type = 0
 
-[sub_resource type="Resource" id="Resource_4mn2w"]
+[sub_resource type="Resource" id="Resource_lxvs8"]
 script = ExtResource("5_ecuhe")
 incrementer = 0
 multiplier = 1.0
@@ -306,6 +306,36 @@ affect = 1
 type = 2
 amount = 2
 
+[sub_resource type="Resource" id="Resource_knw41"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_1wf3w"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_pi3qb"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_5lkmx"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_tajqi"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
 [node name="JapaneseInfantry" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 524288
@@ -331,8 +361,8 @@ collision_mask = 0
 script = ExtResource("4_ogatv")
 health = NodePath("../HealthComponent")
 modifiers = Dictionary[int, ExtResource("5_ecuhe")]({
-1: SubResource("Resource_k2eb2"),
-2: SubResource("Resource_4mn2w")
+1: SubResource("Resource_qx7mg"),
+2: SubResource("Resource_lxvs8")
 })
 metadata/_custom_type_script = "uid://dtfoilkdcfvgv"
 
@@ -350,7 +380,7 @@ collision_mask = 524292
 collide_with_areas = true
 script = ExtResource("6_xt334")
 amount = 2
-actions = Array[ExtResource("7_fknke")]([SubResource("Resource_1hig5"), SubResource("Resource_ecuhe"), SubResource("Resource_vr6f7"), SubResource("Resource_fknke"), SubResource("Resource_i5fd2"), SubResource("Resource_7b2fi"), SubResource("Resource_iullt"), SubResource("Resource_8keau"), SubResource("Resource_wwcm2"), SubResource("Resource_2kw58"), SubResource("Resource_qlhhb"), SubResource("Resource_d2sdu")])
+actions = Array[ExtResource("7_fknke")]([SubResource("Resource_1hig5"), SubResource("Resource_ecuhe"), SubResource("Resource_vr6f7"), SubResource("Resource_fknke"), SubResource("Resource_i5fd2"), SubResource("Resource_7b2fi"), SubResource("Resource_iullt"), SubResource("Resource_8keau"), SubResource("Resource_wwcm2"), SubResource("Resource_2kw58"), SubResource("Resource_qlhhb"), SubResource("Resource_d2sdu"), SubResource("Resource_knw41"), SubResource("Resource_1wf3w"), SubResource("Resource_pi3qb"), SubResource("Resource_5lkmx"), SubResource("Resource_tajqi")])
 metadata/_custom_type_script = "uid://b4prlhibnn6cj"
 
 [node name="CrosshairSprite2D" type="Sprite2D" parent="."]
