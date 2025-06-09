@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cecunxdspc4xw"
-path="res://.godot/imported/spritesheet.png-f0a72c35ed74814426d848bf5ae65d78.ctex"
+uid="uid://ctii2p8sfqn3d"
+path="res://.godot/imported/spritesheet-attack-and-idle.png-c7bc7e2339e666dd4a6657c3d4d037e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/guwardiya_sibil_melee/spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-f0a72c35ed74814426d848bf5ae65d78.ctex"]
+source_file="res://entities/enemies/guwardiya_sibil/spritesheet-attack-and-idle.png"
+dest_files=["res://.godot/imported/spritesheet-attack-and-idle.png-c7bc7e2339e666dd4a6657c3d4d037e7.ctex"]
 
 [params]
 

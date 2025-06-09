@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctii2p8sfqn3d"
-path="res://.godot/imported/spritesheet-attack-and-idle.png-f1eeba45e218f6f786bf95cec63d5e6d.ctex"
+uid="uid://c7sbs1f7amo37"
+path="res://.godot/imported/spritesheet.png-f8614bec0583071534080780b64e495c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://entities/enemies/guwardiya_sibil_melee/spritesheet-attack-and-idle.png"
-dest_files=["res://.godot/imported/spritesheet-attack-and-idle.png-f1eeba45e218f6f786bf95cec63d5e6d.ctex"]
+source_file="res://entities/enemies/japanese_infantry/spritesheet.png"
+dest_files=["res://.godot/imported/spritesheet.png-f8614bec0583071534080780b64e495c.ctex"]
 
 [params]
 

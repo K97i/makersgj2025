@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name PlatformerController2D
 
+signal world_switch_requested
+
 @export var README: String = "IMPORTANT: MAKE SURE TO ASSIGN 'left' 'right' 'jump' 'dash' 'up' in the project settings input map. Usage tips. 1. Hover over each toggle and variable to read what it does and to make sure nothing bugs. 2. Animations are very primitive. To make full use of your custom art, you may want to slightly change the code for the animations"
 
 @export_category("Necesary Child Nodes")
@@ -84,7 +86,11 @@ var dashing_state_timer_node: Timer
 var was_on_floor: bool = false
 var collision_positions: Array
 
+# these are all managed by states, utilized by the AnimationTree and others
+# only the states ever write to this, which means only one state can write
+# at a time. thus, no race conditions!
 var is_holding_sword: bool = false
+var is_blocking: bool = false
 var speed_multiplier: float = 1.0
 
 func _ready():
@@ -125,7 +131,12 @@ func _updateData():
 	coyoteTime = abs(coyoteTime)
 	jumpBuffering = abs(jumpBuffering)
 
+var previous_health = 0.0
 func _process(_delta):
+	var current_health = $Health.percent()
+	if current_health != previous_health:
+		print(current_health)
+	previous_health = current_health
 	pass
 	
 	# Animation Handling
@@ -153,7 +164,7 @@ func _process(_delta):
 
 	# Flip sprite based on movement direction
 	var collision_shapes = get_tree().get_nodes_in_group("collision_shapes")
-	if velocity.x != 0:
+	if velocity.x != 0 and not is_blocking:
 		var direction = sign(velocity.x)
 		for i in range(collision_positions.size()):
 			collision_shapes[i].position.x = collision_positions[i] * direction
@@ -346,4 +357,18 @@ func _wallJump():
 
 
 func _on_torso_animation_tree_animation_started(anim_name: StringName) -> void:
-	print("animation started: ", anim_name)
+	pass
+	#print("animation started: ", anim_name)
+
+
+func _on_parrying_state_exited(extra_arg_0: String, extra_arg_1: bool) -> void:
+	pass # Replace with function body.
+
+
+func _on_parry_hit_box_2d_parry_successful(hit_box: HitBox2D) -> void:
+	print("player: parry success!!!") # Replace with function body.
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("world_switch"):
+		world_switch_requested.emit()
+		get_viewport().set_input_as_handled()
