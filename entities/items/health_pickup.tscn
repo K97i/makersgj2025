@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://8mypyna4gyuf"]
+
+[ext_resource type="Script" uid="uid://bdhxdsdik4cne" path="res://entities/items/health_pickup.gd" id="1_avmvg"]
+[ext_resource type="Texture2D" uid="uid://ohedqifyw584" path="res://entities/items/health_pickup.png" id="1_jvxca"]
+[ext_resource type="Script" uid="uid://chrsg1fc53qs3" path="res://addons/health_hitbox_hurtbox/2d/hit_box_2d/basic_hit_box_2d.gd" id="2_avmvg"]
+[ext_resource type="Script" uid="uid://hrwhd52e5mkq" path="res://addons/health_hitbox_hurtbox/resources/action.gd" id="3_itx6v"]
+
+[sub_resource type="Resource" id="Resource_sp7vt"]
+script = ExtResource("3_itx6v")
+affect = 2
+type = 1
+amount = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgequ"]
+size = Vector2(20, 16)
+
+[node name="HealthPickup" type="Node2D"]
+script = ExtResource("1_avmvg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jvxca")
+
+[node name="BasicHitBox2D" type="Area2D" parent="."]
+script = ExtResource("2_avmvg")
+affect = 2
+amount = 5
+actions = Array[ExtResource("3_itx6v")]([SubResource("Resource_sp7vt")])
+metadata/_custom_type_script = "uid://chrsg1fc53qs3"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BasicHitBox2D"]
+shape = SubResource("RectangleShape2D_mgequ")
+
+[connection signal="body_entered" from="BasicHitBox2D" to="." method="_on_basic_hit_box_2d_body_entered"]
+[connection signal="body_exited" from="BasicHitBox2D" to="." method="_on_basic_hit_box_2d_body_exited"]
