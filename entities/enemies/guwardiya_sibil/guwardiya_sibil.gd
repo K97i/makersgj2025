@@ -179,6 +179,9 @@ func change_state(new_state: State):
 				velocity.y = -pushback_force * 0.3
 		State.DEAD:
 			play_animation("idle", false) # Or "death" - User had "idle"
+			velocity.x = 0
+			velocity.y = 0
+			$AnimatedSprite2D.self_modulate = Color.RED
 			set_physics_process(true)
 			if character_hitbox: character_hitbox.monitoring = false
 			if weapon_hitbox: deactivate_weapon_hitbox()
@@ -187,6 +190,10 @@ func change_state(new_state: State):
 				if child is CollisionShape2D and child.owner == self:
 					child.disabled = true
 					break
+			$AnimatedSprite2D.self_modulate = Color.RED
+
+			await get_tree().create_timer(1.0).timeout
+			self.queue_free()
 
 
 # --- Movement and Animation ---
@@ -282,18 +289,21 @@ func _on_animation_finished(anim_name: String):
 			await tween.finished
 		queue_free()
 
-
-func _on_health_damaged(amount: int):
+func _on_health_damaged(_entity, _type, _amount, _incrementer, _multiplier, _applied):
+	$ProgressBar.value = $HealthComponent.percent()
+	print("KILL")
+	
 	if current_state == State.DEAD:
 		return
 
 	if animation_player and animation_player.has_animation("hurt") and current_state != State.ATTACK and current_state != State.STUNNED :
 		animation_player.play("hurt")
 	else:
-		if animated_sprite and animated_sprite.material and animated_sprite.material.has_shader_parameter("flash_modifier"):
-			animated_sprite.material.set_shader_parameter("flash_modifier", 0.7)
-			var tween = create_tween()
-			tween.tween_property(animated_sprite.material, "shader_parameter/flash_modifier", 0.0, 0.2)
+		pass
+		#if animated_sprite and animated_sprite.material and animated_sprite.material.has_shader_parameter("flash_modifier"):
+			#animated_sprite.material.set_shader_parameter("flash_modifier", 0.7)
+			#var tween = create_tween()
+			#tween.tween_property(animated_sprite.material, "shader_parameter/flash_modifier", 0.0, 0.2)
 
 
 func _on_health_died(entity: Node): # If your HealthComponent.died signal passes the entity

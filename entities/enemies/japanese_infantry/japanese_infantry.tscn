@@ -1,7 +1,8 @@
-[gd_scene load_steps=57 format=3 uid="uid://3263ftyvdq8s"]
+[gd_scene load_steps=73 format=3 uid="uid://3263ftyvdq8s"]
 
 [ext_resource type="Script" uid="uid://qs8p8f18by8x" path="res://entities/enemies/japanese_infantry/japanese_infantry.gd" id="1_3stuk"]
 [ext_resource type="Script" uid="uid://dr8bvnfebp76" path="res://addons/health_hitbox_hurtbox/health/health.gd" id="2_3stuk"]
+[ext_resource type="Theme" uid="uid://ddvf513ke4sc3" path="res://entities/enemies/health.tres" id="2_lxvs8"]
 [ext_resource type="Texture2D" uid="uid://c7sbs1f7amo37" path="res://entities/enemies/japanese_infantry/spritesheet.png" id="3_xt334"]
 [ext_resource type="Script" uid="uid://dtfoilkdcfvgv" path="res://addons/health_hitbox_hurtbox/2d/hurt_box_2d/basic_hurt_box_2d.gd" id="4_ogatv"]
 [ext_resource type="Script" uid="uid://cobp4qehnuq77" path="res://addons/health_hitbox_hurtbox/resources/modifier.gd" id="5_ecuhe"]
@@ -214,14 +215,14 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="Resource" id="Resource_qx7mg"]
+[sub_resource type="Resource" id="Resource_lxvs8"]
 script = ExtResource("5_ecuhe")
 incrementer = 0
 multiplier = 1.0
 convert_affect = 0
 convert_type = 0
 
-[sub_resource type="Resource" id="Resource_lxvs8"]
+[sub_resource type="Resource" id="Resource_fhh24"]
 script = ExtResource("5_ecuhe")
 incrementer = 0
 multiplier = 1.0
@@ -336,12 +337,114 @@ affect = 1
 type = 2
 amount = 2
 
+[sub_resource type="Resource" id="Resource_6h1os"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_maljp"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_y32gq"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_ene5h"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_mrfln"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_4gs4y"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_0tttf"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_ndemg"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_ei5gc"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_tdyvd"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_043l0"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_uyc26"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_tcieh"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_62wgw"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
+[sub_resource type="Resource" id="Resource_owswa"]
+script = ExtResource("7_fknke")
+affect = 1
+type = 2
+amount = 2
+
 [node name="JapaneseInfantry" type="CharacterBody2D"]
 collision_layer = 32
 collision_mask = 524288
 script = ExtResource("1_3stuk")
 take_aim_duration = 2.0
 attack_cooldown_duration = 1.5
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = -10.0
+offset_top = 16.0
+offset_right = 10.0
+offset_bottom = 20.0
+size_flags_horizontal = 4
+theme = ExtResource("2_lxvs8")
+theme_override_constants/outline_size = 12
+max_value = 1.0
+value = 1.0
+show_percentage = false
 
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("2_3stuk")
@@ -361,8 +464,8 @@ collision_mask = 0
 script = ExtResource("4_ogatv")
 health = NodePath("../HealthComponent")
 modifiers = Dictionary[int, ExtResource("5_ecuhe")]({
-1: SubResource("Resource_qx7mg"),
-2: SubResource("Resource_lxvs8")
+1: SubResource("Resource_lxvs8"),
+2: SubResource("Resource_fhh24")
 })
 metadata/_custom_type_script = "uid://dtfoilkdcfvgv"
 
@@ -380,9 +483,11 @@ collision_mask = 524292
 collide_with_areas = true
 script = ExtResource("6_xt334")
 amount = 2
-actions = Array[ExtResource("7_fknke")]([SubResource("Resource_1hig5"), SubResource("Resource_ecuhe"), SubResource("Resource_vr6f7"), SubResource("Resource_fknke"), SubResource("Resource_i5fd2"), SubResource("Resource_7b2fi"), SubResource("Resource_iullt"), SubResource("Resource_8keau"), SubResource("Resource_wwcm2"), SubResource("Resource_2kw58"), SubResource("Resource_qlhhb"), SubResource("Resource_d2sdu"), SubResource("Resource_knw41"), SubResource("Resource_1wf3w"), SubResource("Resource_pi3qb"), SubResource("Resource_5lkmx"), SubResource("Resource_tajqi")])
+actions = Array[ExtResource("7_fknke")]([SubResource("Resource_1hig5"), SubResource("Resource_ecuhe"), SubResource("Resource_vr6f7"), SubResource("Resource_fknke"), SubResource("Resource_i5fd2"), SubResource("Resource_7b2fi"), SubResource("Resource_iullt"), SubResource("Resource_8keau"), SubResource("Resource_wwcm2"), SubResource("Resource_2kw58"), SubResource("Resource_qlhhb"), SubResource("Resource_d2sdu"), SubResource("Resource_knw41"), SubResource("Resource_1wf3w"), SubResource("Resource_pi3qb"), SubResource("Resource_5lkmx"), SubResource("Resource_tajqi"), SubResource("Resource_6h1os"), SubResource("Resource_maljp"), SubResource("Resource_y32gq"), SubResource("Resource_ene5h"), SubResource("Resource_mrfln"), SubResource("Resource_4gs4y"), SubResource("Resource_0tttf"), SubResource("Resource_ndemg"), SubResource("Resource_ei5gc"), SubResource("Resource_tdyvd"), SubResource("Resource_043l0"), SubResource("Resource_uyc26"), SubResource("Resource_tcieh"), SubResource("Resource_62wgw"), SubResource("Resource_owswa")])
 metadata/_custom_type_script = "uid://b4prlhibnn6cj"
 
 [node name="CrosshairSprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("8_3stuk")
+
+[connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]

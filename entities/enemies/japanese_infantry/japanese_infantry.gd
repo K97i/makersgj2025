@@ -380,11 +380,20 @@ func _on_hitscan_action_applied(hurt_box: HurtBox2D):
 	# e.g. play a hit confirmation sound
 
 # --- Death ---
-func _on_died():
+func _on_died(entity):
+	velocity.x = 0
+	velocity.y = 0
+	$AnimatedSprite2D.self_modulate = Color.RED
+	$AnimatedSprite2D.play("idle")
 	print(DEBUG_PREFIX % _debug_name, "Died.")
 	set_physics_process(false) # Stop processing
 	if is_instance_valid(crosshair_sprite): crosshair_sprite.queue_free()
 	if is_instance_valid(los_ray): los_ray.queue_free() # Clean up manually added node
 	# play_animation("death") # If you have one
 	# await get_node("AnimationPlayer").animation_finished # if death anim controlled by AnimPlayer
+	await get_tree().create_timer(1.0).timeout
 	queue_free()
+
+
+func _on_health_component_damaged(entity: Node, type: HealthActionType.Enum, amount: int, incrementer: int, multiplier: float, applied: int) -> void:
+	$ProgressBar.value = $HealthComponent.percent()
