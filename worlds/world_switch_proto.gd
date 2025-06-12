@@ -4,8 +4,10 @@ extends Node2D
 # --- EXPORTED VARIABLES (Assign these in the Godot Editor Inspector) ---
 
 # TileMaps
-@export var spanish_world_tilemap: TileMapLayer
-@export var japanese_world_tilemap: TileMapLayer
+@export var spanish_world_fg_tilemap: TileMapLayer
+@export var japanese_world_fg_tilemap: TileMapLayer
+@export var spanish_world_bg_tilemap: TileMapLayer
+@export var japanese_world_bg_tilemap: TileMapLayer
 
 # Parallax Layer Sprite Textures
 @export_group("Spanish World Textures")
@@ -92,18 +94,24 @@ func _update_world_visuals_and_entities():
 
 	# 1. TileMaps
 	# Show/hide and enable/disable collision
-	if spanish_world_tilemap:
-		spanish_world_tilemap.visible = is_spanish_active
+	if spanish_world_fg_tilemap and spanish_world_bg_tilemap:
+		spanish_world_fg_tilemap.visible = is_spanish_active
+		spanish_world_bg_tilemap.visible = is_spanish_active
 		#spanish_world_tilemap.tile_set.set_collision
 		#spanish_world_tilemap.tile_set.set_physics_layer_collision_layer() # Assuming world geometry is on physics layer 1
 		#spanish_world_tilemap.set_collision_mask_value(1, is_spanish_active)  # Adjust if needed
 		# A simpler way for TileMap physics if you don't need fine-grained layer control during switch:
-		spanish_world_tilemap.collision_enabled = is_spanish_active 
-	if japanese_world_tilemap:
-		japanese_world_tilemap.visible = not is_spanish_active
-		#japanese_world_tilemap.set_collision_layer_value(1, not is_spanish_active)
-		#japanese_world_tilemap.set_collision_mask_value(1, not is_spanish_active)
-		japanese_world_tilemap.collision_enabled = not is_spanish_active
+		spanish_world_fg_tilemap.collision_enabled = is_spanish_active 
+		spanish_world_bg_tilemap.collision_enabled = is_spanish_active 
+	if japanese_world_fg_tilemap and japanese_world_bg_tilemap:
+		japanese_world_fg_tilemap.visible = not is_spanish_active
+		japanese_world_bg_tilemap.visible = not is_spanish_active
+		#japanese_world_tilemap.tile_set.set_collision
+		#japanese_world_tilemap.tile_set.set_physics_layer_collision_layer() # Assuming world geometry is on physics layer 1
+		#japanese_world_tilemap.set_collision_mask_value(1, is_japanese_active)  # Adjust if needed
+		# A simpler way for TileMap physics if you don't need fine-grained layer control during switch:
+		japanese_world_fg_tilemap.collision_enabled = not is_spanish_active 
+		japanese_world_bg_tilemap.collision_enabled = not is_spanish_active 
 
 	# 2. Parallax Backgrounds
 	if is_spanish_active:
